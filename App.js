@@ -11,6 +11,7 @@
 // https://github.com/gothinkster/node-express-realworld-example-app
 // https://github.com/elsewhencode/project-guidelines#6-structure-and-naming
 
+
 {SWAGGER}
 // for view api states
 // https://swagger.io/tools/swagger-ui/
