@@ -6,11 +6,15 @@
 // https://docs.aws.amazon.com/pt_br/elasticbeanstalk/latest/dg/create_deploy_nodejs.html
 // https://docs.aws.amazon.com/pt_br/elasticbeanstalk/latest/dg/nodejs-getstarted.html
 // https://blog.risingstack.com/10-best-practices-for-writing-node-js-rest-apis/
-// https://medium.com/codebase/structure-of-a-nodejs-api-project-cdecb46ef3f8
 
 // https://github.com/gothinkster/node-express-realworld-example-app
 // https://github.com/elsewhencode/project-guidelines#6-structure-and-naming
 
+{reactiveX}
+// https://medium.freecodecamp.org/rxjs-and-node-8f4e0acebc7c
+
+{Gerenciador de dependencias}
+//https://github.com/young-steveo/bottlejs
 
 {SWAGGER}
 // for view api states

@@ -13,9 +13,9 @@
         "helmet": "*",
         "cookie-parser": "*",
 
-        "flux": "*",
         "rxjs": "*",
         "node-uuid": "*",
-        "jsonwebtoken": "*"
+        "jsonwebtoken": "*",
+        "express-jwt": "*"
     }
 }
