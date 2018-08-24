@@ -1,23 +1,19 @@
 //index.js
 var http = require('http');
 const express = require('express')
-const httpProxy = require('express-http-proxy')
 const app = express()
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const helmet = require('helmet');
 
-const userServiceProxy = httpProxy('http://localhost:3001');
-const productsServiceProxy = httpProxy('http://localhost:3002');
-
-// Proxy request
+// request
 app.get('/users', (req, res, next) => {
-    userServiceProxy(req, res, next);
-})
+    console.log('user');
+});
 
 app.get('/products', (req, res, next) => {
-    productsServiceProxy(req, res, next);
-})
+    console.log('products');
+});
 
 app.use(logger('dev'));
 app.use(helmet());
