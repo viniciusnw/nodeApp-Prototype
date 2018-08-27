@@ -9,7 +9,7 @@ function promiseStructure() {
             return new Promise((resolve, reject) => {
                 var type = typeof word;
                 setTimeout(() => {
-                    if (type == 'string') resolve(word)
+                    if (type == 'string') resolve(word);
                     else reject('Não sei contar'); // reject(Error(word));
                 }, 2000);
 
@@ -133,4 +133,4 @@ function objectStructure() {
     });
 
     app.listen(app.get('port'), () => console.log(`App listening on *:${app.get('port')}`));
-}())
+}());

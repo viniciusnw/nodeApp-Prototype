@@ -1,7 +1,7 @@
 //index.js
 var http = require('http');
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const helmet = require('helmet');
