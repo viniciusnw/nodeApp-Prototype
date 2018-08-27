@@ -117,7 +117,7 @@ function objectStructure() {
 
 // root Scope
 (function () {
-    // const Observable = require('rxjs/Observable').Observable;
+
     const express = require('express');
     const app = express();
     app.set('port', process.env.PORT || 3000);
@@ -134,4 +134,29 @@ function objectStructure() {
     });
 
     app.listen(app.get('port'), () => console.log(`App listening on *:${app.get('port')}`));
+}());
+
+// rxjs exemple
+(function () {
+    var express = require('express');
+    var Rx = require('rxjs');
+    var app = express();
+
+    app.post('/:id?', (req, res) => {
+        return getUserById(req.params.id)
+            .toPromise() /* return the Rx stream as promise to express so it traces its lifecycle */
+            .then(
+                user => res.send(user),
+                err => res.status(500).send(err.message)
+            );
+    });
+
+    function getUserById(id) {
+        // stub implementation
+        return Rx.Observable.of({
+                id,
+                name: 'username'
+            })
+            .delay(100);
+    }
 }());
