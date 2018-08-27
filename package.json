@@ -6,8 +6,7 @@
         "dev": "node ./gateway/playground.js",
         "dev:d-chrome": "node --inspect ./gateway/playground.js",
         "dev:w": "nodemon ./gateway/playground.js",
-        "dev:w:d-chrome": "rawkit ./gateway/playground.js --nodemon",
-        "ts-start": "gulp | node dist/index.js"
+        "dev:w:d-chrome": "rawkit ./gateway/playground.js --nodemon"
     },
     "devDependencies": {
         "newman": "^3.8.2",
