@@ -30,9 +30,8 @@
 // https://github.com/jaredhanson/passport-http-bearer
 // https://developers.wrike.com/documentation/oauth2
 // ---
-// -oauth2
+// - oauth2
 // https://www.npmjs.com/package/oauth2-server
-
 
 // #{Payload}
 // Odata
