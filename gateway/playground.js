@@ -13,7 +13,7 @@ function promiseStructure() {
                     else reject('Não sei contar'); // reject(Error(word));
                 }, 2000);
 
-            })
+            });
         }
     });
 
@@ -117,6 +117,7 @@ function objectStructure() {
 
 // root Scope
 (function () {
+    // const Observable = require('rxjs/Observable').Observable;
     const express = require('express');
     const app = express();
     app.set('port', process.env.PORT || 3000);
