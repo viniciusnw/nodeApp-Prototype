@@ -28,6 +28,7 @@
 // https://appdividend.com/2018/02/07/node-js-jwt-authentication-tutorial-scratch/
 // https://medium.com/front-end-hacking/learn-using-jwt-with-passport-authentication-9761539c4314
 // https://github.com/jaredhanson/passport-http-bearer
+// https://developers.wrike.com/documentation/oauth2
 // ---
 // -oauth2
 // https://www.npmjs.com/package/oauth2-server
