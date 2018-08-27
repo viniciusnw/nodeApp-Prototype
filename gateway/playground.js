@@ -115,48 +115,59 @@ function objectStructure() {
     r.speakReturn();
 }
 
+// ========================= RXJS
+
+/** 
+ * Observable structure 
+ * 
+ * # Open Documentation #
+ * https://xgrommx.github.io/rx-book/index.html
+ * 
+ * # Oficial Documentation #
+ * http://reactivex.io/
+ * 
+ * 
+ * Subject: 
+ * https://xgrommx.github.io/rx-book/content/getting_started_with_rxjs/subjects.html
+ * http://reactivex.io/documentation/subject.html
+ */
+function getUser(id = 1) {
+    var Rx = require('rxjs');
+    let Subject = new Rx.Subject();
+
+    setTimeout(() => {
+        Subject.next({
+            id: id,
+            name: 'San'
+        });
+    }, 3000);
+
+    return Subject.asObservable();
+}
+
 // root Scope
 (function () {
-
     const express = require('express');
+    
+    // uses
     const app = express();
+    // app.use(bodyParser.urlencoded({ extended: false }));
+    // app.use(bodyParser.json());
+
+    // sets
     app.set('port', process.env.PORT || 3000);
+    
+    // prevent GET /favicon.ico 204 status{no content}
+    app.get('/favicon.ico', (req, res) => res.sendStatus(204));
+    app.get('/:id?', (req, res) => {
+        var headers = req.headers;
+        // console.log(headers);
 
-    app.get('/:paran?', (req, res) => {
-        // service Call
-        // classStructure()
-        console.log('bla1');
-
-        // Browser Return
-        res.status(200).json({
-            attr: req.params.paran || 'Oi'
+        getUser(req.params.id).subscribe((r) => {
+            console.log(r); // Payload (ex:Odata) de retorno {data || error || warning || message}
+            res.status(200).json(r); // devolve a resposta para o navegador
         });
     });
 
     app.listen(app.get('port'), () => console.log(`App listening on *:${app.get('port')}`));
-}());
-
-// rxjs exemple
-(function () {
-    var express = require('express');
-    var Rx = require('rxjs');
-    var app = express();
-
-    app.post('/:id?', (req, res) => {
-        return getUserById(req.params.id)
-            .toPromise() /* return the Rx stream as promise to express so it traces its lifecycle */
-            .then(
-                user => res.send(user),
-                err => res.status(500).send(err.message)
-            );
-    });
-
-    function getUserById(id) {
-        // stub implementation
-        return Rx.Observable.of({
-                id,
-                name: 'username'
-            })
-            .delay(100);
-    }
 }());

@@ -17,10 +17,10 @@
         "express": "4.13.4",
         "express-jwt": "3.3.0",
         "jsonwebtoken": "7.1.9",
-        "morgan": "^1.7.0",
+        "morgan": "1.7.0",
         "body-parser": "1.15.0",
         "cors": "2.7.1",
-        "debug": "^2.2.0",
+        "debug": "2.2.0",
         "errorhandler": "1.4.3",
         "method-override": "2.3.5",
         "methods": "1.1.2",
@@ -29,6 +29,7 @@
         "request": "2.69.0",
         "slug": "0.9.1",
         "underscore": "1.8.3",
-        "rxjs": "^6.2.2"
+        "rxjs": "6.2.2",
+        "bcrypt": "3.0.0"
     }
 }
