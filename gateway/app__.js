@@ -1,4 +1,4 @@
-{LEARN}
+// #{LEARN}
 // https://scotch.io/tutorials/getting-to-know-flux-the-react-js-architecture
 // https://www.npmjs.com/package/flux
 // https://imasters.com.br/desenvolvimento/gerenciando-o-fluxo-assincrono-de-operacoes-em-nodejs
@@ -10,18 +10,18 @@
 // https://github.com/gothinkster/node-express-realworld-example-app
 // https://github.com/elsewhencode/project-guidelines#6-structure-and-naming
 
-{reactiveX}
+// #{reactiveX}
 // https://medium.freecodecamp.org/rxjs-and-node-8f4e0acebc7c
 
-{Gerenciador de dependencias}
+// #{Gerenciador de dependencias}
 //https://github.com/young-steveo/bottlejs
 
-{SWAGGER}
+// #{SWAGGER}
 // for view api states
 // https://swagger.io/tools/swagger-ui/
 
-{API authentication}
-- jwt
+// #{API authentication}
+// - jwt
 // http://www.luiztools.com.br/post/autenticacao-json-web-token-jwt-em-nodejs/
 // os produtos vão rodar no nosso ambiente?
 // app.post('/login', (req, res, next) => {
@@ -36,9 +36,9 @@
     
 //     res.status(500).send('Login inválido!');
 //   })
--oauth2
-https://www.npmjs.com/package/oauth2-server
+// -oauth2
+// https://www.npmjs.com/package/oauth2-server
 
 
-{Payload}
+// #{Payload}
 // Odata

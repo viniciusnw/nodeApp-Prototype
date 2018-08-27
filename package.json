@@ -3,19 +3,32 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "start": "node app"
+        "dev": "node ./gateway/playground.js",
+        "dev:d-chrome": "node --inspect ./gateway/playground.js",
+        "dev:w": "nodemon ./gateway/playground.js",
+        "dev:w:d-chrome": "rawkit ./gateway/playground.js --nodemon",
+        "ts-start": "gulp | node dist/index.js"
+    },
+    "devDependencies": {
+        "newman": "^3.8.2",
+        "nodemon": "^1.18.3",
+        "rawkit": "1.3.2"
     },
     "dependencies": {
-        "http": "*",
-        
-        "express": "3.1.0",
-        "morgan": "*",
-        "helmet": "*",
-        "cookie-parser": "*",
-
-        "rxjs": "*",
-        "node-uuid": "*",
-        "jsonwebtoken": "*",
-        "express-jwt": "*"
+        "express": "4.13.4",
+        "express-jwt": "3.3.0",
+        "jsonwebtoken": "7.1.9",
+        "morgan": "^1.7.0",
+        "body-parser": "1.15.0",
+        "cors": "2.7.1",
+        "debug": "^2.2.0",
+        "errorhandler": "1.4.3",
+        "method-override": "2.3.5",
+        "methods": "1.1.2",
+        "passport": "0.3.2",
+        "passport-local": "1.0.0",
+        "request": "2.69.0",
+        "slug": "0.9.1",
+        "underscore": "1.8.3"
     }
 }
