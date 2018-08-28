@@ -44,3 +44,36 @@
 // #{CM ROUTES/PAYLOADS REFERENCE}
 // https://docs.google.com/spreadsheets/d/1zyzszQ3EHcUY28ejjzQ9SY33ArbSWnBxlZRSAnXmzUE/edit?ts=5b806fe5#gid=0
 // https://docs.google.com/spreadsheets/d/1oEJ-VH_Sri1vWRx86rFDkHPwpqPB25ambiLUA5PBX3M/edit?ts=5b846206#gid=0
+
+
+// 2.0 -------------------------------------------
+
+
+// == javascript-tools 2018 ==
+// https://www.creativebloq.com/features/25-game-changing-javascript-tools
+
+// == ROUTE FRAMEWORK {restify} ==
+// https://github.com/restify/node-restify
+// - get started EXAMPLES restify -
+// https://github.com/jgoodall/restify-base
+// https://github.com/GetStream/node-restify-mongo-api
+// https://auth0.com/blog/developing-well-organized-apis-with-nodejs-joi-and-mongo/ - 
+// https://stackoverflow.com/questions/14338683/how-can-i-support-cors-when-using-restify - restify cors
+// https://github.com/restify/node-restify/issues/1585 - restify lifecycle
+// - jwt -
+// https://medium.com/sean3z/json-web-tokens-jwt-with-restify-bfe5c4907e3c
+// https://github.com/supermamon/node-restify-jwt-sample - restify-jwt-community
+// - oAuth2 -
+// https://github.com/domenic/restify-oauth2
+
+// == MODELO BANCO 1.0 ==
+// https://cmtecnologia.slack.com/files/U13DL30LC/FCGJAHH9A/apigw_eer_v2.png
+
+// == ENVIRONMENTS CONFIG ==
+// https://github.com/motdotla/dotenv
+
+// == CACHE STORAGE ==
+// https://github.com/NodeRedis/node_redis
+
+// == CLUSTER ==
+// https://www.infoq.com/br/articles/nodejs-utilizando-modulo-de-cluster

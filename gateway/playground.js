@@ -163,11 +163,9 @@ function getUser(id = 1) {
     app.get('/:id?', (req, res) => {
         var headers = req.headers;
         // console.log(headers);
-        
         getUser(req.params.id).subscribe((r) => {
             // Payload (ex:Odata) de retorno {data || error || warning || message}
             console.log(r); 
-            //
             res.status(200).json(r);
         });
     });
