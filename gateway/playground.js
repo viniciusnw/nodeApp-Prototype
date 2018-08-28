@@ -127,7 +127,7 @@ function objectStructure() {
  * http://reactivex.io/
  * 
  * 
- * Subject: 
+ * Subject:
  * https://xgrommx.github.io/rx-book/content/getting_started_with_rxjs/subjects.html
  * http://reactivex.io/documentation/subject.html
  */
@@ -159,13 +159,16 @@ function getUser(id = 1) {
     
     // prevent GET /favicon.ico 204 status{no content}
     app.get('/favicon.ico', (req, res) => res.sendStatus(204));
+    app.get('/robots.txt', (req, res) => res.sendStatus(204));
     app.get('/:id?', (req, res) => {
         var headers = req.headers;
         // console.log(headers);
-
+        
         getUser(req.params.id).subscribe((r) => {
-            console.log(r); // Payload (ex:Odata) de retorno {data || error || warning || message}
-            res.status(200).json(r); // devolve a resposta para o navegador
+            // Payload (ex:Odata) de retorno {data || error || warning || message}
+            console.log(r); 
+            //
+            res.status(200).json(r);
         });
     });
 

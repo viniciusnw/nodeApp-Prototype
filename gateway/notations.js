@@ -1,5 +1,6 @@
 // #{LEARN}
 // https://www.npmjs.com/package/flux
+// http://facebook.github.io/flux/docs/overview.html#content
 // https://scotch.io/tutorials/getting-to-know-flux-the-react-js-architecture
 // https://imasters.com.br/desenvolvimento/gerenciando-o-fluxo-assincrono-de-operacoes-em-nodejs
 // https://blog.risingstack.com/10-best-practices-for-writing-node-js-rest-apis/
@@ -15,7 +16,8 @@
 // #{reactiveX}
 // https://medium.freecodecamp.org/rxjs-and-node-8f4e0acebc7c
 
-// #{Gerenciador de dependencias}
+// #{Gerenciador de importação dependencias}
+// https://www.sitepoint.com/understanding-module-exports-exports-node-js/
 // http://jasonwatmore.com/post/2018/06/14/nodejs-mongodb-simple-api-for-authentication-registration-and-user-management
 
 // #{SWAGGER}
@@ -28,9 +30,9 @@
 // https://appdividend.com/2018/02/07/node-js-jwt-authentication-tutorial-scratch/
 // https://medium.com/front-end-hacking/learn-using-jwt-with-passport-authentication-9761539c4314
 // https://github.com/jaredhanson/passport-http-bearer
-// https://developers.wrike.com/documentation/oauth2
 // ---
 // - oauth2
+// https://developers.wrike.com/documentation/oauth2
 // https://www.npmjs.com/package/oauth2-server
 
 // #{Payload}
@@ -39,6 +41,6 @@
 // #{ENVIRONMENTS AMAZON CONFIG}
 // https://stackoverflow.com/questions/40660618/aws-api-gateway-elastic-beanstalk-and-microservices
 
-// #{ROUTES/PAYLOADS REFERENCE}
+// #{CM ROUTES/PAYLOADS REFERENCE}
 // https://docs.google.com/spreadsheets/d/1zyzszQ3EHcUY28ejjzQ9SY33ArbSWnBxlZRSAnXmzUE/edit?ts=5b806fe5#gid=0
 // https://docs.google.com/spreadsheets/d/1oEJ-VH_Sri1vWRx86rFDkHPwpqPB25ambiLUA5PBX3M/edit?ts=5b846206#gid=0
