@@ -1,49 +1,33 @@
+// common route example
+// this.server.use('/', routes.defaultRoutes);
+
 const express = require('express');
-const server = express();
 
-// const auth = require('./auth/auth.js');
+return module.exports = Server = {
+    express: express(),
 
-class Server {
-
-    // Set Configs
-    constructor() {
+    config: () => {
         // configs
-        server.set('port', 3000);
-        this.preventGetSet();
+        Server.express.set('port', 3000);
+        
+        // prevent GET /favicon.ico 204 status {no content}
+        Server.express.get('/favicon.ico', (req, res) => res.sendStatus(204));
+        Server.express.get('/robots.txt', (req, res) => res.sendStatus(204));
+        
+        // log
+        console.log('Server: config');
+    },
 
-        console.log('Constructor Server');
-    }
+    run: (mainRoute, AppLoad) => {
+        // log
+        console.log('Server: Run');
+        
+        Server.config();
+        Server.express.use(mainRoute, AppLoad.appRoutes());
+        Server.start();
+    },
 
-    /**
-     * 
-     * @param {*} appRun 
-     */
-    run(appRun) {
-        server.use(appRun.mainRoute, appRun.useRoutes());
-    }
-
-    // prevent GET /favicon.ico 204 status {no content}
-    preventGetSet() {
-        server.get('/favicon.ico', (req, res) => res.sendStatus(204));
-        server.get('/robots.txt', (req, res) => res.sendStatus(204));
-    }
-
-    setMainRoutes(mainRoute) {
-
-        // common route example
-        // this.server.use('/', routes.defaultRoutes);
-
-        // auth example
-        // this.server.get('/login', (req, res) => {
-        //     res.status(200).json({
-        //         token: auth.makeJwtToken()
-        //     });
-        // });
-    }
-
-    start() {
-        server.listen(server.get('port'), () => console.log(`server listening on *:${server.get('port')}`));
+    start: () => {
+        Server.express.listen(Server.express.get('port'), () => console.log(`Server: Start ( listening on *:${Server.express.get('port')} )`));
     }
 }
-
-module.exports = new Server();

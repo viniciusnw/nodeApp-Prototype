@@ -1,10 +1,6 @@
-const appServer = require('./server/server');
-const appLoad = require('./App/app');
+const Server = require('./server/server');
+const App = require('./App/app');
 
 (function () {
-    console.dir(appLoad);
-    appServer.run({
-        mainRoute: '/',
-        app: appLoad
-    });
+    Server.run('/', App);
 }());

@@ -1,22 +1,11 @@
-const express = require('express');
-const server = express();
-
 const routes = require('./api/routes/routes');
+const Server = require('./../server/server');
 
-class App {
-    constructor() {
-        console.log('Constructor app');
+return module.exports = App = {
+    
+    appRoutes: () => {
+        console.log('App: app routes');
+        Server.express.use('/cmapps/default', routes.defaultRoutes.export());
+        return () => {};
     }
-
-    useRoutes() {
-        server.use('/cmapps/default', routes.defaultRoutes.export());
-
-        // appRoutes.get('/gateway', function (req, res, next) {
-        //     res.send('Hi');
-        // });
-
-        // return appRoutes;
-    }
-}
-
-module.exports = new App();
+};

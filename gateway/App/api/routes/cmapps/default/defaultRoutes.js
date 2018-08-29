@@ -1,16 +1,15 @@
-const defaultRoutes = require('express').Router();
+const routes = require('express').Router();
 
-class DefaultRoutes {
-    constructor() {
-
-    }
-
-    export(){        
-        return defaultRoutes.get('/login', function (req, res, next) {
-            console.log('Hi');
+return module.exports = defaultRoutes = {
+    export: () => {
+        console.log('Default Routes');
+        
+        routes.get('/login', function (req, res, next) {
+            res.status(200).json({
+                msg: 'First route =D'
+            });
         });
+
+        return routes;
     }
-}
-
-
-module.exports = new DefaultRoutes();
+};
