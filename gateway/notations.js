@@ -77,3 +77,6 @@
 
 // == CLUSTER ==
 // https://www.infoq.com/br/articles/nodejs-utilizando-modulo-de-cluster
+
+// == Node Routes Framework Analise ==
+// https://raygun.com/blog/nodejs-vs-hapi-express-restify-koa/

@@ -1,9 +1,16 @@
-var express = require('express');
-var defaultRoutes = express.Router();
+const defaultRoutes = require('express').Router();
 
-/* FIRST GET */
-defaultRoutes.get('/', function (req, res, next) {
-    res.send('Hi');
-});
+class DefaultRoutes {
+    constructor() {
 
-module.exports = defaultRoutes;
+    }
+
+    export(){        
+        return defaultRoutes.get('/login', function (req, res, next) {
+            console.log('Hi');
+        });
+    }
+}
+
+
+module.exports = new DefaultRoutes();

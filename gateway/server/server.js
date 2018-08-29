@@ -1,21 +1,49 @@
-console.log(process.env);
-
 const express = require('express');
-const routes = require('./../App/api/routes/routes');
+const server = express();
 
-// uses
-const app = express();
+// const auth = require('./auth/auth.js');
 
-// sets
-app.set('port', process.env.PORT || 3000);
+class Server {
 
-// prevent GET /favicon.ico 204 status {no content}
-app.get('/favicon.ico', (req, res) => res.sendStatus(204));
-app.get('/robots.txt', (req, res) => res.sendStatus(204));
+    // Set Configs
+    constructor() {
+        // configs
+        server.set('port', 3000);
+        this.preventGetSet();
 
-app.use('/', routes.defaultRoutes);
-// app.use('/cmapp', routes.cmapp);
+        console.log('Constructor Server');
+    }
 
+    /**
+     * 
+     * @param {*} appRun 
+     */
+    run(appRun) {
+        server.use(appRun.mainRoute, appRun.useRoutes());
+    }
 
-app.listen(app.get('port'), () => console.log(`App listening on *:${app.get('port')}`));
+    // prevent GET /favicon.ico 204 status {no content}
+    preventGetSet() {
+        server.get('/favicon.ico', (req, res) => res.sendStatus(204));
+        server.get('/robots.txt', (req, res) => res.sendStatus(204));
+    }
 
+    setMainRoutes(mainRoute) {
+
+        // common route example
+        // this.server.use('/', routes.defaultRoutes);
+
+        // auth example
+        // this.server.get('/login', (req, res) => {
+        //     res.status(200).json({
+        //         token: auth.makeJwtToken()
+        //     });
+        // });
+    }
+
+    start() {
+        server.listen(server.get('port'), () => console.log(`server listening on *:${server.get('port')}`));
+    }
+}
+
+module.exports = new Server();

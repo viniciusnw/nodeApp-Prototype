@@ -3,10 +3,10 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "dev": "node ./gateway/server/server.js",
-        "dev:d-chrome": "node --inspect ./gateway/server/server.js",
-        "dev:w": "nodemon ./gateway/server/server.js",
-        "dev:w:d-chrome": "rawkit ./gateway/server/server.js --nodemon"
+        "dev": "node ./gateway/index.js",
+        "dev:d-chrome": "node --inspect ./gateway/index.js",
+        "dev:w": "nodemon ./gateway/app.js",
+        "dev:w:d-chrome": "rawkit ./gateway/index.js --nodemon"
     },
     "devDependencies": {
         "newman": "^3.8.2",
@@ -21,7 +21,6 @@
         "dotenv": "6.0.0",
         "errorhandler": "1.4.3",
         "express": "4.13.4",
-        "express-jwt": "3.3.0",
         "jsonwebtoken": "7.1.9",
         "method-override": "2.3.5",
         "methods": "1.1.2",
@@ -29,11 +28,6 @@
         "passport": "0.3.2",
         "passport-local": "1.0.0",
         "request": "2.69.0",
-        "restify": "7.2.1",
-		"restify-errors": "5.0.0",
-        "restify-plugins": "1.6.0",
-        "restify-jwt-community": "1.0.2",
-        "restify-cors-middleware": "1.1.1",
         "rxjs": "6.2.2",
         "slug": "0.9.1",
         "underscore": "1.8.3",
