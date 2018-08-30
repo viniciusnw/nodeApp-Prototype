@@ -1,6 +1,6 @@
 const routes = require('express').Router();
 
-return module.exports = defaultRoutes = {
+module.exports = defaultRoutes = {
     export: () => {
         console.log('Default Routes');
         
