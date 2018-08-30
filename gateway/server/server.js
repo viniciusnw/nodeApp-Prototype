@@ -1,7 +1,9 @@
 const express = require('express');
+const App = require('./../App/app');
 
 module.exports = Server = {
     express: express(),
+    App: App,
 
     config: () => {
         // configs
@@ -15,16 +17,16 @@ module.exports = Server = {
         console.log('Server: config');
     },
 
-    run: (mainRoute, AppLoad) => {
+    run: (apiMainRoute) => {
         // log
         console.log('Server: Run');
 
-        Server.config();
-        AppLoad.appRoutes(mainRoute);
-        Server.start();
+        // set app routes
+        Server.App.setAppRoutes(apiMainRoute);
     },
 
     start: () => {
+        // server start
         Server.express.listen(Server.express.get('port'), () => console.log(`Server: Start ( listening on *:${Server.express.get('port')} )`));
     }
 };

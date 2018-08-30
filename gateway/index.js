@@ -1,6 +1,7 @@
 const Server = require('./server/server');
-const App = require('./App/app');
 
 (function () {
-    Server.run('/cmapps', App);
+    Server.config();
+    Server.run('/api/v0');
+    Server.start();
 }());

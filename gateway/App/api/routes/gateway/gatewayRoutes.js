@@ -1,12 +1,12 @@
 const routes = require('express').Router();
 
-module.exports = defaultRoutes = {
+module.exports = gatewayRoutes = {
     export: () => {
-        console.log('App: set Default Routes');
+        console.log('App: set Gateway Routes');
         
         routes.get('/login', function (req, res, next) {
             res.status(200).json({
-                msg: 'Default Login'
+                msg: 'Gateway Login'
             });
         });
 
