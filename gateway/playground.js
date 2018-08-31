@@ -145,10 +145,10 @@ function getUser(id = 1) {
     return Subject.asObservable();
 }
 
-// root Scope
+// simple express server testes
 (function () {
     const express = require('express');
-    
+
     // uses
     const app = express();
     // app.use(bodyParser.urlencoded({ extended: false }));
@@ -156,7 +156,7 @@ function getUser(id = 1) {
 
     // sets
     app.set('port', process.env.PORT || 3000);
-    
+
     // prevent GET /favicon.ico 204 status{no content}
     app.get('/favicon.ico', (req, res) => res.sendStatus(204));
     app.get('/robots.txt', (req, res) => res.sendStatus(204));
@@ -165,10 +165,71 @@ function getUser(id = 1) {
         // console.log(headers);
         getUser(req.params.id).subscribe((r) => {
             // Payload (ex:Odata) de retorno {data || error || warning || message}
-            console.log(r); 
+            console.log(r);
             res.status(200).json(r);
         });
     });
 
     app.listen(app.get('port'), () => console.log(`App listening on *:${app.get('port')}`));
+});
+
+// ============================================= 
+
+// seneca testes
+function login(options) {
+    this.add({
+        foo: 'bar'
+    }, function (args, done) {
+        console.log(args);
+        done({
+            color: options.color
+        });
+    })
+
+
+    this.add({
+        foo: 'bar'
+    }, function (args, done) {
+        console.log(args);
+        done({
+            color: options.color
+        });
+    })
+}
+
+(function () {
+    const express = require('express');
+    // uses
+    const app = express();
+
+    // sets
+    app.set('port', process.env.PORT || 3000);
+
+    // prevent GET /favicon.ico 204 status{no content}
+    app.get('/favicon.ico', (req, res) => res.sendStatus(204));
+    app.get('/robots.txt', (req, res) => res.sendStatus(204));
+    app.get('/:id?', (req, res) => {
+        seneca.use(plugin, {
+            color: 'pink'
+        })
+        seneca.act({
+            foo: 'bar'
+        }, console.log)
+    });
+
+    app.listen(app.get('port'), () => console.log(`App listening on *:${app.get('port')}`));
 }());
+
+
+// app.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header(
+//         "Access-Control-Allow-Headers",
+//         "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+//     );
+//     if (req.method === "OPTIONS") {
+//         res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+//         return res.status(200).json({});
+//     }
+//     next();
+// });

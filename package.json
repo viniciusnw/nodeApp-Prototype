@@ -4,6 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "node ./gateway/index.js",
+        "dev:play": "node ./gateway/playground.js",
         "dev:d-chrome": "node --inspect ./gateway/index.js",
         "dev:w": "nodemon ./gateway/app.js",
         "dev:w:d-chrome": "rawkit ./gateway/index.js --nodemon"
@@ -16,22 +17,23 @@
     "dependencies": {
         "bcrypt": "3.0.0",
         "body-parser": "1.15.0",
+        "cluster": "0.7.7",
         "cors": "2.7.1",
         "debug": "2.2.0",
         "dotenv": "6.0.0",
         "errorhandler": "1.4.3",
         "express": "4.13.4",
+        "joi": "13.6.0",
         "jsonwebtoken": "7.1.9",
         "method-override": "2.3.5",
         "methods": "1.1.2",
-        "winston": "3.0.0",
         "passport": "0.3.2",
         "passport-local": "1.0.0",
         "request": "2.69.0",
         "rxjs": "6.2.2",
+        "seneca": "^3.7.0",
         "slug": "0.9.1",
         "underscore": "1.8.3",
-        "cluster": "0.7.7",
-        "joi": "13.6.0"
+        "winston": "3.0.0"
     }
 }

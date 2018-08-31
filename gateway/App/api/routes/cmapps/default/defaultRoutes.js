@@ -2,9 +2,11 @@ const routes = require('express').Router();
 const storeModule = require('./../../../../store/store-module');
 
 module.exports = defaultRoutes = {
-    store: storeModule.store,
-    actions: storeModule.actions.login,
+    // injeção de dependencia
+    store: storeModule.store, // store module
+    actions: storeModule.actions.login, // actions
 
+    // disparo
     dispatch: (dispatchObj) => {
         // console.log(dispatchObj);
         switch (dispatchObj.type) {
@@ -19,6 +21,8 @@ module.exports = defaultRoutes = {
     export: () => {
         console.log('App: set Default Routes');
         routes.get('/login', function (req, res, next) {
+            
+            // subscribe
             let subscribe = defaultRoutes.store.SING_IN.subscribe((data) => {
                 res.status(200).json({
                     msg: data

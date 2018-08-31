@@ -2,8 +2,9 @@ const express = require('express');
 const App = require('./../App/app');
 
 module.exports = Server = {
-    express: express(),
-    App: App,
+    // injeção de dependencia
+    express: express(), // express for API-server ( /api/v0 route root )
+    App: App, // App run into route root API-server
 
     config: () => {
         // configs
@@ -21,7 +22,7 @@ module.exports = Server = {
         // log
         console.log('Server: Run');
 
-        // set app routes
+        // App export yours routes, with API-Server route reference
         Server.App.setAppRoutes(apiMainRoute);
     },
 
