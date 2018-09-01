@@ -18,15 +18,16 @@ module.exports = Server = {
         console.log('Server: config');
     },
 
-    run: (apiMainRoute) => {
+
+    setAppRun: (apiMainRoute) => {
         // log
-        console.log('Server: Run');
+        console.log('Server: set app to run');
 
         // App export yours routes, with API-Server route reference
         Server.App.setAppRoutes(apiMainRoute);
     },
 
-    start: () => {
+    run: () => {
         // server start
         Server.express.listen(Server.express.get('port'), () => console.log(`Server: Start ( listening on *:${Server.express.get('port')} )`));
     }

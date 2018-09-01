@@ -3,11 +3,11 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "dev": "node ./gateway/index.js",
+        "start": "node ./index.js",
         "dev:play": "node ./gateway/playground.js",
-        "dev:d-chrome": "node --inspect ./gateway/index.js",
-        "dev:w": "nodemon ./gateway/app.js",
-        "dev:w:d-chrome": "rawkit ./gateway/index.js --nodemon"
+        "dev:d-chrome": "node --inspect ./index.js",
+        "dev:w": "nodemon ./app.js",
+        "dev:w:d-chrome": "rawkit ./index.js --nodemon"
     },
     "devDependencies": {
         "newman": "^3.8.2",

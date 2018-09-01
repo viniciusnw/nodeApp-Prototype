@@ -1,29 +1,46 @@
 const routes = require('express').Router();
 const storeModule = require('./../../../../store/store-module');
 
-module.exports = defaultRoutes = {
-    // injeção de dependencia
-    store: storeModule.store, // store module
-    actions: storeModule.actions.login, // actions
+// injeção de dependencia
+const loginActions = storeModule.actions.login; // actions
+const loginDispatch = storeModule.dispatchers.login; // disparo
+const Store = storeModule.store; // store module
 
-    // disparo
-    dispatch: (dispatchObj) => {
-        // console.log(dispatchObj);
-        switch (dispatchObj.type) {
-            case defaultRoutes.actions.SING_IN:
-                defaultRoutes.store.getState();
-                break;
-            case defaultRoutes.actions.SING_OUT:
-                break;
-        }
-    },
+module.exports = defaultRoutes = {
 
     export: () => {
+        // log
         console.log('App: set Default Routes');
+
+        // Routes
         routes.get('/login', function (req, res, next) {
-            
+
             // subscribe
-            let subscribe = defaultRoutes.store.SING_IN.subscribe((data) => {
+            let subscribe = Store.SIGN_IN
+                .subscribe((data) => {
+                    res.status(200).json({
+                        msg: data
+                    });
+                    subscribe.unsubscribe();
+                });
+
+            // dispatch
+            loginDispatch({
+                type: loginActions.SIGN_IN,
+                payload: {
+                    name: 'Rob',
+                    pwd: 'pwd'
+                }
+            }, function () {
+                // console.log('callback');
+            });
+
+        });
+
+        routes.get('/logout', function (req, res, next) {
+
+            // subscribe
+            let subscribe = Store.SIGN_OUT.subscribe((data) => {
                 res.status(200).json({
                     msg: data
                 });
@@ -31,12 +48,11 @@ module.exports = defaultRoutes = {
             });
 
             // dispatch
-            defaultRoutes.dispatch({
-                type: defaultRoutes.actions.SING_IN,
-                payload: {
-                    name: 'Rob',
-                    pwd: 'bla'
-                }
+            loginDispatch({
+                type: loginActions.SIGN_OUT,
+                payload: null
+            }, function () {
+                // console.log('callback');
             });
         });
 

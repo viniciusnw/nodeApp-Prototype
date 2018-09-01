@@ -1,9 +1,9 @@
-const Server = require('./server/server');
+const Server = require('./gateway/server/server');
 
 (function () {
     Server.config();
-    Server.run('/api/v0');
-    Server.start();
+    Server.setAppRun('/api/v0');
+    Server.run();
 }());
 
 // - HEROKU ENV -

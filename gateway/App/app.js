@@ -4,7 +4,7 @@ module.exports = App = {
     // App set routes
     setAppRoutes: (apiMainRoute) => {
         // log
-        console.log('App: set app routes');
+        console.log('App: set routes for Server use');
 
         // set main routes
         Server.express.use(apiMainRoute + '/default', AppRoutes.defaultRoutes.export());

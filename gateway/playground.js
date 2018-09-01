@@ -176,45 +176,50 @@ function getUser(id = 1) {
 // ============================================= 
 
 // seneca testes
-function login(options) {
+function login_actions(options) {
     this.add({
-        foo: 'bar'
+        login: 'sign_in'
     }, function (args, done) {
-        console.log(args);
+        // console.log(args);
         done({
             color: options.color
         });
-    })
+    });
 
 
     this.add({
-        foo: 'bar'
+        login: 'sign_out'
     }, function (args, done) {
-        console.log(args);
+        // console.log(args);
         done({
             color: options.color
         });
-    })
+    });
 }
 
 (function () {
     const express = require('express');
+    const seneca = require('seneca')();
     // uses
     const app = express();
-
+    
     // sets
     app.set('port', process.env.PORT || 3000);
-
+    
     // prevent GET /favicon.ico 204 status{no content}
     app.get('/favicon.ico', (req, res) => res.sendStatus(204));
     app.get('/robots.txt', (req, res) => res.sendStatus(204));
+    
+
+    // app run
     app.get('/:id?', (req, res) => {
-        seneca.use(plugin, {
+        seneca.use(login_actions, {
             color: 'pink'
-        })
+        });
+
         seneca.act({
-            foo: 'bar'
-        }, console.log)
+            login: 'sign_out'
+        }, console.log);
     });
 
     app.listen(app.get('port'), () => console.log(`App listening on *:${app.get('port')}`));
