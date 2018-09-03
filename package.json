@@ -22,7 +22,7 @@
     },
     "dependencies": {
         "bcrypt": "3.0.0",
-        "body-parser": "1.15.0",
+        "body-parser": "1.18.3",
         "cluster": "0.7.7",
         "cors": "2.7.1",
         "debug": "2.2.0",
@@ -38,7 +38,7 @@
         "path": "0.12.7",
         "request": "2.69.0",
         "rxjs": "6.2.2",
-        "seneca": "^3.7.0",
+        "seneca": "3.7.0",
         "slug": "0.9.1",
         "underscore": "1.8.3",
         "winston": "3.0.0"
