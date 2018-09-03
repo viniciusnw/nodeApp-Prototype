@@ -14,7 +14,6 @@ class LoginReducers {
     }
 
     gerar_token(payload) {
-        // console.log(payload);
         let jwt = this.jwt.sign({
             user: payload.name,
             pwd: payload.pwd

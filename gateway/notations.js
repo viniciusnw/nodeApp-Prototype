@@ -41,10 +41,6 @@
 // #{ENVIRONMENTS AMAZON CONFIG}
 // https://stackoverflow.com/questions/40660618/aws-api-gateway-elastic-beanstalk-and-microservices
 
-// #{CM ROUTES/PAYLOADS REFERENCE}
-// https://docs.google.com/spreadsheets/d/1zyzszQ3EHcUY28ejjzQ9SY33ArbSWnBxlZRSAnXmzUE/edit?ts=5b806fe5#gid=0
-// https://docs.google.com/spreadsheets/d/1oEJ-VH_Sri1vWRx86rFDkHPwpqPB25ambiLUA5PBX3M/edit?ts=5b846206#gid=0
-
 
 // 2.0 -------------------------------------------
 

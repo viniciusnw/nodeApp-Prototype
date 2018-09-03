@@ -2,7 +2,7 @@ const routes = require('express').Router();
 
 module.exports = cmAppNameRoutes = {
     export: () => {
-        console.log('App: set appName Routes');
+        console.log('App: set AppName Routes');
         
         routes.get('/login', function (req, res, next) {
             res.status(200).json({

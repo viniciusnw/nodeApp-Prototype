@@ -6,29 +6,28 @@ module.exports = Server = {
     express: express(), // express for API-server ( /api/v0 route root )
     App: App, // App run into route root API-server
 
+    // middlewares
     config: () => {
-        // configs
-        Server.express.set('port', 3000);
-
-        // prevent GET /favicon.ico 204 status {no content}
+        // prevent GET 204 status {no content}
         Server.express.get('/favicon.ico', (req, res) => res.sendStatus(204));
         Server.express.get('/robots.txt', (req, res) => res.sendStatus(204));
-
-        // log
-        console.log('Server: config');
+        Server.express.get('/teste', (req, res) => res.sendStatus(204));
+        console.log('Server: set configs'); // log
     },
 
 
     setAppRun: (apiMainRoute) => {
-        // log
-        console.log('Server: set app to run');
-
-        // App export yours routes, with API-Server route reference
+        console.log('Server: set app to run'); // log
+        // App set yours routes, with {apiMainRoute} reference
         Server.App.setAppRoutes(apiMainRoute);
     },
-
+    
     run: () => {
-        // server start
-        Server.express.listen(Server.express.get('port'), () => console.log(`Server: Start ( listening on *:${Server.express.get('port')} )`));
+        // server express server
+        Server.express.listen(process.env.PORT || 3000, () => console.log(`Server: Start ( listening on *:${process.env.PORT || 3000} )`));
+
+        // memory use
+        let used = process.memoryUsage().heapUsed / 1024 / 1024;
+        console.log(`Server: memory use:  ${Math.round(used * 100) / 100} MB`);
     }
 };

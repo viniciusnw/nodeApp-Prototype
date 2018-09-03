@@ -1,28 +1,27 @@
-const routes = require('express').Router();
+const router = require('express').Router();
 const storeModule = require('./../../../../store/store-module');
 
 // injeção de dependencia
 const loginActions = storeModule.actions.login; // actions
 const loginDispatch = storeModule.dispatchers.login; // disparo
+
 const Store = storeModule.store; // store module
 
 module.exports = defaultRoutes = {
 
     export: () => {
-        // log
-        console.log('App: set Default Routes');
+        console.log('App: set Default Routes'); // log
 
         // Routes
-        routes.get('/login', function (req, res, next) {
+        router.get('/login', function (req, res, next) {
 
             // subscribe
-            let subscribe = Store.SIGN_IN
-                .subscribe((data) => {
-                    res.status(200).json({
-                        msg: data
-                    });
-                    subscribe.unsubscribe();
+            let subscribe = Store.SIGN_IN.subscribe((data) => {
+                res.status(200).json({
+                    msg: data
                 });
+                subscribe.unsubscribe();
+            });
 
             // dispatch
             loginDispatch({
@@ -31,13 +30,10 @@ module.exports = defaultRoutes = {
                     name: 'Rob',
                     pwd: 'pwd'
                 }
-            }, function () {
-                // console.log('callback');
-            });
-
+            }, function () {}); //callback
         });
 
-        routes.get('/logout', function (req, res, next) {
+        router.get('/logout', function (req, res, next) {
 
             // subscribe
             let subscribe = Store.SIGN_OUT.subscribe((data) => {
@@ -51,11 +47,9 @@ module.exports = defaultRoutes = {
             loginDispatch({
                 type: loginActions.SIGN_OUT,
                 payload: null
-            }, function () {
-                // console.log('callback');
-            });
+            }, function () {}); //callback
         });
 
-        return routes;
+        return router;
     }
 };

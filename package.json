@@ -2,12 +2,18 @@
     "name": "nodeapp-prototype",
     "version": "0.0.1",
     "private": true,
+    "main": "index.js",
+    "engines": {
+        "node": "8.11.4",
+        "npm": "5.6.0"
+    },
     "scripts": {
-        "start": "node ./index.js",
-        "dev:play": "node ./gateway/playground.js",
-        "dev:d-chrome": "node --inspect ./index.js",
-        "dev:w": "nodemon ./app.js",
-        "dev:w:d-chrome": "rawkit ./index.js --nodemon"
+        "start": "node index",
+        "test": "echo \"Error: no test specified \" && exit 1",
+        "dev:play": "node gateway/playground",
+        "dev:d-chrome": "node --inspect index",
+        "dev:w": "nodemon index.js",
+        "dev:w:d-chrome": "rawkit index --nodemon"
     },
     "devDependencies": {
         "newman": "^3.8.2",
@@ -29,6 +35,7 @@
         "methods": "1.1.2",
         "passport": "0.3.2",
         "passport-local": "1.0.0",
+        "path": "0.12.7",
         "request": "2.69.0",
         "rxjs": "6.2.2",
         "seneca": "^3.7.0",

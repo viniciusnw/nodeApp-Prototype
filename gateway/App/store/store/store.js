@@ -4,7 +4,7 @@ const Rx = require('rxjs');
 module.exports = Store = {
     SIGN_IN: new Rx.Subject(),
     SIGN_OUT: new Rx.Subject(),
-
+    
     SIGN_IN__CHANGE_STATE: function(newState){
         Store.SIGN_IN.next(newState);
     },
