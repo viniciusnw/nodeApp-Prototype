@@ -14,7 +14,7 @@ module.exports = Server = {
         /**
          * Set up public files
          */
-        // Server.express.use( express.static('gateway'));
+        
 
         /**
          * For parse POST requests

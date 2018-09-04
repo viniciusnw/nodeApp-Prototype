@@ -3,27 +3,49 @@ class LoginReducers {
         this.jwt = require('jsonwebtoken');
     }
 
+    // micro service example #1
+    gerar_token(payload) {
+
+        // user mock
+        let user_schema = {
+            user: 'Rob',
+            pwd: 'teste'
+        }
+
+        // simule valid authenticate
+        if (payload.user == user_schema.user && payload.pwd == user_schema.pwd) return {
+            // service data return
+            user: payload.user,
+            pwd: payload.pwd,
+            // jwt token create
+            authorization: "Bearer " + this.jwt.sign({
+                user: payload.user,
+                pwd: payload.pwd
+            }, 'process.env.SECRET', {
+                expiresIn: 86400 // 24h
+            })
+        };
+        else throw new Error('Failed to authenticate!');
+    }
+
+    // micro service example #2
     deslogar() {
         return {
             user: null,
             pwd: null,
-            jwt: null
+            authorization: null,
         };
     }
 
-    gerar_token(payload) {
-        let jwt = this.jwt.sign({
-            user: payload.user,
-            pwd: payload.pwd
-        }, 'process.env.SECRET', {
-            expiresIn: 300
+    // async micro-service call
+    exec(method, payload) {
+        return new Promise((resolve, reject) => {
+            try {
+                resolve(this[method](payload));
+            } catch (err) {
+                reject(err);
+            }
         });
-
-        return {
-            user: payload.user,
-            pwd: payload.pwd,
-            access_token: jwt
-        }
     }
 }
 

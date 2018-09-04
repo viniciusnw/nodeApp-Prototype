@@ -6,6 +6,8 @@ const loginActions = storeModule.actions.login; // actions
 const loginDispatch = storeModule.dispatchers.login; // disparo
 // const Store = storeModule.store; // store module
 
+const auth = require('./../../../../../server/auth/auth');
+
 module.exports = defaultRoutes = {
 
     export: () => {
@@ -19,19 +21,23 @@ module.exports = defaultRoutes = {
             loginDispatch({
                 type: loginActions.SIGN_IN,
                 payload: requestPost
-            }, (data) => {
-                res.status(200).json(data);
-            }); //callback
+            }).then((data) => {
+                res.status(data.status).json(data);
+            }, (err) => {
+                res.status(err.status).json(err);
+            });
         });
-
-        router.get('/logout', function (req, res, next) {
+        
+        router.get('/logout', auth.bearerTokenValidation, function (req, res, next) {
             // dispatch
             loginDispatch({
                 type: loginActions.SIGN_OUT,
                 payload: null
-            }, (data) => {
-                res.status(200).json(data);
-            }); //callback
+            }).then((data) => {
+                res.status(data.status).json(data);
+            }, (err) => {
+                res.status(err.status).json(err);
+            });
         });
 
         return router;

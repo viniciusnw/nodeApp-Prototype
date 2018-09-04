@@ -1,16 +1,40 @@
 const jwt = require('jsonwebtoken');
+const responsePayload = require('./../../App/store/dispatchers/responsePayload');
 
-class Auth {
-
-    constructor() {}
-
-    makeJwtToken() {
-        return jwt.sign({
-            id: 10
-        }, 'process.env.SECRET', {
-            expiresIn: 300
-        });
+module.exports = Auth = {
+    bearerTokenValidation: (req, res, next) => {
+        if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+            jwt.verify(req.headers.authorization.split(' ')[1], 'process.env.SECRET', function (err, decoded) {
+                if (err) {
+                    let data = responsePayload.errorResponse(err, 401);
+                    res.status(data.status).json(data);
+                } else {
+                    req.decoded = decoded;
+                    next();
+                }
+            });
+        } else {
+            let data = responsePayload.errorResponse(new Error('No token provided.'), 401);
+            res.status(data.status).json(data);
+        }
     }
-}
+};
 
-module.exports = new Auth();
+// var express = require('express'),
+//     media = express.Router(),
+//     mediaProtected = express.Router();
+// media.get('/', function(req, res) {
+//     // provide results from db
+// });
+// mediaProtected.post('/', function(req, res) {
+//     // This route is auth protected
+// });
+
+// module.exports = {
+//     protected: mediaProtected,
+//     unprotected: media
+// };
+
+// var router = require('./my-router');
+// app.use('/api/route', passport.authenticate('bearer'), router.protected);
+// app.use('/api/route', router.unprotected);
