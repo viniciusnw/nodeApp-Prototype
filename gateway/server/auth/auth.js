@@ -2,9 +2,10 @@ const jwt = require('jsonwebtoken');
 const responsePayload = require('./../../App/store/dispatchers/responsePayload');
 
 module.exports = Auth = {
-    bearerTokenValidation: (req, res, next) => {
-        if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-            jwt.verify(req.headers.authorization.split(' ')[1], 'process.env.SECRET', function (err, decoded) {
+    // check bearer
+    bearerAuthentication: (req, res, next) => {
+        if (req.headers && req.headers.Authorization && req.headers.Authorization.split(' ')[0] === 'Bearer') {
+            jwt.verify(req.headers.Authorization.split(' ')[1], 'process.env.SECRET', function (err, decoded) {
                 if (err) {
                     let data = responsePayload.errorResponse(err, 401);
                     res.status(data.status).json(data);
@@ -17,6 +18,11 @@ module.exports = Auth = {
             let data = responsePayload.errorResponse(new Error('No token provided.'), 401);
             res.status(data.status).json(data);
         }
+    },
+    
+    // check authorize 
+    applicationAuthorization: (req, res, next) => {
+        
     }
 };
 

@@ -4,7 +4,6 @@ const router = require('express').Router();
 const storeModule = require('./../../../../store/store-module');
 const loginActions = storeModule.actions.login; // actions
 const loginDispatch = storeModule.dispatchers.login; // disparo
-// const Store = storeModule.store; // store module
 
 const auth = require('./../../../../../server/auth/auth');
 
@@ -13,7 +12,7 @@ module.exports = defaultRoutes = {
     export: () => {
         console.log('App: set Default Routes'); // log
 
-        // Routes
+        // simple login and jwt token
         router.post('/login', function (req, res, next) {
             let requestPost = req.body;
 
@@ -27,8 +26,8 @@ module.exports = defaultRoutes = {
                 res.status(err.status).json(err);
             });
         });
-        
-        router.get('/logout', auth.bearerTokenValidation, function (req, res, next) {
+        // simple logout
+        router.get('/logout', auth.bearerAuthentication, function (req, res, next) {
             // dispatch
             loginDispatch({
                 type: loginActions.SIGN_OUT,
@@ -40,6 +39,22 @@ module.exports = defaultRoutes = {
             });
         });
 
+        // application authorize
+        router.get('/oauth/authorize', function (req, res, next) {
+            let queryParams = req.query;
+            loginDispatch({
+                type: loginActions.AUTHORIZE,
+                payload: queryParams
+            }).then((data) => {
+                res.status(data.status).json(data);
+            }, (err) => {
+                res.status(err.status).json(err);
+            });
+        });
+        // application authentication
+        router.post('/oauth/token', function (req, res, next) {
+            let requestPost = req.body;
+        });
         return router;
     }
 };
