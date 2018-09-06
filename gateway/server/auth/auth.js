@@ -10,7 +10,7 @@ module.exports = Auth = {
                     let data = responsePayload.errorResponse(err, 401);
                     res.status(data.status).json(data);
                 } else {
-                    req.decoded = decoded;
+                    req.decodedBearerAuthentication = decoded;
                     next();
                 }
             });
@@ -18,29 +18,36 @@ module.exports = Auth = {
             let data = responsePayload.errorResponse(new Error('No token provided.'), 401);
             res.status(data.status).json(data);
         }
-    },
-    
+    }, // disabled, for now
+
     // check authorize 
     applicationAuthorization: (req, res, next) => {
-        
+        if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+            jwt.verify(req.headers.authorization.split(' ')[1], 'process.env.SECRET', function (err, decoded) {
+                if (err) {
+                    let data = responsePayload.errorResponse(err, 401);
+                    res.status(data.status).json(data);
+                } else {
+                    req.decodedApplicationAuthorization = decoded;
+                    next();
+                }
+            });
+        } else {
+            let data = responsePayload.errorResponse(new Error('No token provided.'), 401);
+            res.status(data.status).json(data);
+        }
     }
 };
 
-// var express = require('express'),
-//     media = express.Router(),
-//     mediaProtected = express.Router();
-// media.get('/', function(req, res) {
-//     // provide results from db
-// });
-// mediaProtected.post('/', function(req, res) {
-//     // This route is auth protected
-// });
 
-// module.exports = {
-//     protected: mediaProtected,
-//     unprotected: media
-// };
+// BRUNO CLIENTE
+// PUB PRI
 
-// var router = require('./my-router');
-// app.use('/api/route', passport.authenticate('bearer'), router.protected);
-// app.use('/api/route', router.unprotected);
+// ENVIO DO BRUNO PARA VINICIUS
+// PUB_VIN(PRI_BRU(FILE)) > PRI_VIN(PUB_BRU(FILE))
+
+// ENVIO DO VINICIUS PARA O BRUNO
+// PUB_BRU(PRI_VIN(FILE)) > PRI_BRU(PUB_VIN(FILE))
+
+// VINICIUS ADMIN SERVER FODEROSO
+// PUB PRI

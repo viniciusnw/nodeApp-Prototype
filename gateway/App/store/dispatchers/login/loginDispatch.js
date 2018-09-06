@@ -13,7 +13,6 @@ module.exports = login = function (dispatchObj, callbackFunction = () => null) {
 
     return new Promise(function (resolve, reject) {
         switch (dispatchObj.type) {
-            // choice action
             case loginActions.SIGN_IN:
                 // payload validation async | use Joi
                 loginActions.SIGN_IN_schema(dispatchObj.payload).then(
@@ -30,17 +29,27 @@ module.exports = login = function (dispatchObj, callbackFunction = () => null) {
                 break;
             case loginActions.SIGN_OUT:
                 loginReducers.exec('deslogar').then(
-                    ServiceDataReturn => resolve(responsePayload.successResponse(ServiceDataReturn)), // micro service run success.
-                    ServiceDataReturnErr => reject(responsePayload.errorResponse(ServiceDataReturnErr, 406)) // micro service run erro.
+                    ServiceDataReturn => resolve(responsePayload.successResponse(ServiceDataReturn)),
+                    ServiceDataReturnErr => reject(responsePayload.errorResponse(ServiceDataReturnErr, 406))
                 );
                 break;
             case loginActions.AUTHORIZE:
                 loginActions.AUTHORIZE_schema(dispatchObj.payload).then(
-                    (schemaPayload) => loginReducers.exec('authorization', schemaPayload).then(
-                        ServiceDataReturn => resolve(responsePayload.successResponse(ServiceDataReturn)), // micro service run success.
-                        ServiceDataReturnErr => reject(responsePayload.errorResponse(ServiceDataReturnErr, 406)) // micro service run erro.
+                    (schemaPayload) => loginReducers.exec('authentication', schemaPayload).then(
+                        ServiceDataReturn => resolve(responsePayload.successResponse(ServiceDataReturn)),
+                        ServiceDataReturnErr => reject(responsePayload.errorResponse(ServiceDataReturnErr, 406))
                     ),
-                    // Payload validation error.
+                    (schemaPayloadErr) => {
+                        reject(responsePayload.errorResponse(schemaPayloadErr, 400));
+                    }
+                );
+                break;
+            case loginActions.AUTHORIZE_TOKEN:
+                loginActions.AUTHORIZE_TOKEN_schema(dispatchObj.payload).then(
+                    (schemaPayload) => loginReducers.exec('authorizationToken', schemaPayload).then(
+                        ServiceDataReturn => resolve(responsePayload.successResponse(ServiceDataReturn)),
+                        ServiceDataReturnErr => reject(responsePayload.errorResponse(ServiceDataReturnErr, 406))
+                    ),
                     (schemaPayloadErr) => {
                         reject(responsePayload.errorResponse(schemaPayloadErr, 400));
                     }

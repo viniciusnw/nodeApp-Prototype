@@ -54,6 +54,18 @@ module.exports = defaultRoutes = {
         // application authentication
         router.post('/oauth/token', function (req, res, next) {
             let requestPost = req.body;
+            loginDispatch({
+                type: loginActions.AUTHORIZE_TOKEN,
+                payload: requestPost
+            }).then((data) => {
+                res.status(data.status).json(data);
+            }, (err) => {
+                res.status(err.status).json(err);
+            });
+        });
+
+        router.get('/TESTE', auth.applicationAuthorization, function (req, res, next) {
+            res.status(200).json("Autorizado");
         });
         return router;
     }

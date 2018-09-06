@@ -5,8 +5,8 @@ module.exports = login = {
     SIGN_IN: 'SIGN_IN',
     SIGN_IN_schema: schemaToValidate => {
         let schema = Joi.object().keys({
-            user: Joi.string().alphanum().min(3).max(30).required(),
-            pwd: Joi.string().required()
+            user: Joi.required(),
+            pwd: Joi.required()
         });
         return Joi.validate(schemaToValidate, schema);
     },
@@ -19,8 +19,19 @@ module.exports = login = {
     AUTHORIZE: 'AUTHORIZE',
     AUTHORIZE_schema: schemaToValidate => {
         let schema = Joi.object().keys({
-            client_id: Joi.string().alphanum().min(3).max(30).required(),
-            response_type: Joi.string().required()
+            client_id: Joi.required(),
+            response_type: Joi.required()
+        });
+        return Joi.validate(schemaToValidate, schema);
+    },
+
+    // AUTHORIZE_TOKEN
+    AUTHORIZE_TOKEN: 'AUTHORIZE_TOKEN',
+    AUTHORIZE_TOKEN_schema: schemaToValidate => {
+        let schema = Joi.object().keys({
+            authorization_code: Joi.required(),
+            client_id: Joi.required(),
+            client_secret: Joi.required()
         });
         return Joi.validate(schemaToValidate, schema);
     }
