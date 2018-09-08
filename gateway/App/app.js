@@ -1,13 +1,38 @@
 const AppRoutes = require('./api/routes/routes');
+const auth = require('./../server/auth/auth');
 
 module.exports = App = {
     // App set routes
     setAppRoutes: (apiMainRoute) => {
         // log
         console.log('App: START set Routes');
-        // set main routes
-        Server.express.use(apiMainRoute + '/default', AppRoutes.defaultRoutes.export());
-        Server.express.use(apiMainRoute + '/cmAppName', AppRoutes.cmAppNameRoutes.export());
-        Server.express.use(apiMainRoute + '/apiClient', AppRoutes.gatewayRoutes.export());
+
+        // SET MAIN ROUTES
+
+        /**
+         * Default Routes
+         */
+        Server.express.use(
+            apiMainRoute + '/default',
+            AppRoutes.defaultRoutes.export()
+        );
+
+        /**
+         * CM APP ROUTES
+         */
+        Server.express.use(
+            apiMainRoute + '/cmAppName',
+            auth.beaderAuthentication,
+            AppRoutes.cmAppNameRoutes.export()
+        );
+
+        /**
+         * API CLIENT ROUTES
+         */
+        Server.express.use(
+            apiMainRoute + '/apiClient',
+            auth.beaderAuthentication,
+            AppRoutes.gatewayRoutes.export()
+        );
     }
 };

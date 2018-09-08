@@ -17,7 +17,7 @@ module.exports = login = function (dispatchObj, callbackFunction = () => null) {
                 // payload validation async | use Joi
                 loginActions.SIGN_IN_schema(dispatchObj.payload).then(
                     // Payload validation success.
-                    (schemaPayload) => loginReducers.exec('gerar_token', schemaPayload).then( // run micro service
+                    (schemaPayload) => loginReducers.exec('authorizationBasic', schemaPayload).then( // run micro service
                         ServiceDataReturn => resolve(responsePayload.successResponse(ServiceDataReturn)), // micro service run success.
                         ServiceDataReturnErr => reject(responsePayload.errorResponse(ServiceDataReturnErr, 406)) // micro service run erro.
                     ),
@@ -28,7 +28,7 @@ module.exports = login = function (dispatchObj, callbackFunction = () => null) {
                 );
                 break;
             case loginActions.SIGN_OUT:
-                loginReducers.exec('deslogar').then(
+                loginReducers.exec('logout').then(
                     ServiceDataReturn => resolve(responsePayload.successResponse(ServiceDataReturn)),
                     ServiceDataReturnErr => reject(responsePayload.errorResponse(ServiceDataReturnErr, 406))
                 );
@@ -46,7 +46,7 @@ module.exports = login = function (dispatchObj, callbackFunction = () => null) {
                 break;
             case loginActions.AUTHORIZE_TOKEN:
                 loginActions.AUTHORIZE_TOKEN_schema(dispatchObj.payload).then(
-                    (schemaPayload) => loginReducers.exec('authorizationToken', schemaPayload).then(
+                    (schemaPayload) => loginReducers.exec('authorizationBearer', schemaPayload).then(
                         ServiceDataReturn => resolve(responsePayload.successResponse(ServiceDataReturn)),
                         ServiceDataReturnErr => reject(responsePayload.errorResponse(ServiceDataReturnErr, 406))
                     ),

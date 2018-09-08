@@ -2,10 +2,11 @@ const jwt = require('jsonwebtoken');
 const responsePayload = require('./../../App/store/dispatchers/responsePayload');
 
 module.exports = Auth = {
-    // check bearer
-    bearerAuthentication: (req, res, next) => {
-        if (req.headers && req.headers.Authorization && req.headers.Authorization.split(' ')[0] === 'Bearer') {
-            jwt.verify(req.headers.Authorization.split(' ')[1], 'process.env.SECRET', function (err, decoded) {
+
+    // check basic
+    basicAuthentication: (req, res, next) => {
+        Auth.getHeaders(req, 'authorization-user').then((Basic) => {
+            jwt.verify(Basic, 'process.env.SECRET_basic', function (err, decoded) {
                 if (err) {
                     let data = responsePayload.errorResponse(err, 401);
                     res.status(data.status).json(data);
@@ -14,40 +15,56 @@ module.exports = Auth = {
                     next();
                 }
             });
-        } else {
-            let data = responsePayload.errorResponse(new Error('No token provided.'), 401);
-            res.status(data.status).json(data);
-        }
-    }, // disabled, for now
+        }, (err) => {
+            res.status(err.status).json(err);
+        });
+    },
 
-    // check authorize 
-    applicationAuthorization: (req, res, next) => {
-        if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-            jwt.verify(req.headers.authorization.split(' ')[1], 'process.env.SECRET', function (err, decoded) {
+    // check bearer 
+    beaderAuthentication: (req, res, next) => {
+        Auth.getHeaders(req, 'authorization-token').then((Beader) => {
+            jwt.verify(Beader, 'process.env.SECRET_bearer', function (err, decoded) {
                 if (err) {
                     let data = responsePayload.errorResponse(err, 401);
                     res.status(data.status).json(data);
                 } else {
-                    req.decodedApplicationAuthorization = decoded;
+                    req.decodedBearerAuthentication = decoded;
                     next();
                 }
             });
-        } else {
-            let data = responsePayload.errorResponse(new Error('No token provided.'), 401);
-            res.status(data.status).json(data);
-        }
+        }, (err) => {
+            res.status(err.status).json(err);
+        });
+    },
+
+    // Auth HEADERS
+    getHeaders: (reqHeaders, target = '_target_') => {
+        // let headers
+        let headers = reqHeaders.headers;
+
+        return new Promise((resolve, reject) => {
+            // No Header content
+            if (!headers) reject(responsePayload.errorResponse(new Error('No header provided.'), 401));
+
+            // No target Header content
+            if (target in headers) {
+                let auth = headers[target].split(' ');
+                switch (target) {
+                    case 'authorization-user':
+                        if (auth[0] === 'Basic')
+                            resolve(headers[target].split(' ')[1]);
+                        else
+                            reject(responsePayload.errorResponse(new Error('No token provided.'), 401));
+                        break;
+
+                    case 'authorization-token':
+                        if (auth[0] === 'Bearer')
+                            resolve(headers[target].split(' ')[1]);
+                        else
+                            reject(responsePayload.errorResponse(new Error('No token provided.'), 401));
+                }
+            } else reject(responsePayload.errorResponse(new Error('No ' + target + ' provided.'), 401));
+        });
+
     }
 };
-
-
-// BRUNO CLIENTE
-// PUB PRI
-
-// ENVIO DO BRUNO PARA VINICIUS
-// PUB_VIN(PRI_BRU(FILE)) > PRI_VIN(PUB_BRU(FILE))
-
-// ENVIO DO VINICIUS PARA O BRUNO
-// PUB_BRU(PRI_VIN(FILE)) > PRI_BRU(PUB_VIN(FILE))
-
-// VINICIUS ADMIN SERVER FODEROSO
-// PUB PRI

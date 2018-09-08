@@ -2,40 +2,14 @@ class LoginReducers {
     constructor() {
         this.jwt = require('jsonwebtoken');
         this.clientMock = {
-            client_id: 123,
-            client_secret: 'ABC123',
-            response_type: 'code',
+            client_name: 'Client Name', // Name
+            client_id: 123, // public
+            client_secret: 'ABC123', // secret
+            response_type: 'code', // res_type 
         };
-    }
-    // micro service-/ EXAMPLE #1
-    gerar_token(payload) {
-        // user mock
-        let user_schema = {
+        this.userMock = {
             user: 'Rob',
             pwd: 'teste'
-        }
-
-        // simule valid authenticate
-        if (payload.user == user_schema.user && payload.pwd == user_schema.pwd) return {
-            // service data return
-            user: payload.user,
-            pwd: payload.pwd,
-            // jwt token create
-            Authorization: "Bearer " + this.jwt.sign({
-                user: payload.user,
-                pwd: payload.pwd
-            }, 'process.env.SECRET', {
-                expiresIn: 86400 // 24h
-            })
-        };
-        else throw new Error('Failed to authenticate!');
-    }
-    // micro service-/ EXAMPLE #2
-    deslogar() {
-        return {
-            user: null,
-            pwd: null,
-            authorization: null,
         };
     }
 
@@ -57,9 +31,9 @@ class LoginReducers {
         };
     }
 
-    // authorization service
-    authorizationToken(payload) {
-        let clientValidate; // extra valididation
+    // authorization Bearer
+    authorizationBearer(payload) {
+        let clientValidate;
         try {
             clientValidate = (payload.client_id == this.jwt.verify(payload.authorization_code, payload.client_secret).client_id) ? true : false;
         } catch (err) {
@@ -70,9 +44,8 @@ class LoginReducers {
         return {
             // access_token
             access_token: 'Bearer ' + this.jwt.sign({
-                client_id: payload.client_id,
-                client_secret: payload.client_secret,
-            }, 'process.env.SECRET', {
+                client: this.clientMock
+            }, 'process.env.SECRET_bearer', {
                 expiresIn: 86400 // 24h
             }),
             token_type: "bearer",
@@ -80,6 +53,30 @@ class LoginReducers {
             host: "www.cmtecnologia.com.br",
             msg: "Enjoy your Token!"
         }
+    }
+
+    // authorization Basic
+    authorizationBasic(payload) {
+        // simule valid authenticate
+        if (payload.user == this.userMock.user && payload.pwd == this.userMock.pwd) return {
+            access_token: "Basic " + this.jwt.sign({
+                user: payload.user,
+                pwd: payload.pwd
+            }, 'process.env.SECRET_basic', {
+                expiresIn: 86400 // 24h
+            }),
+            token_type: "basic",
+        };
+        else throw new Error('Failed to authenticate!');
+    }
+
+    // logout
+    logout(){
+        return {
+            user: null,
+            pwd: null,
+            authorization: null,
+        };
     }
 
     // async micro-service call

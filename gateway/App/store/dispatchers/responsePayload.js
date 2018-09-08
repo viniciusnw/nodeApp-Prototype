@@ -17,13 +17,13 @@ module.exports = responsePayload = {
         }
     },
 
-    errorResponse: (err, status) => {
+    errorResponse: (err, status = null) => {
         return {
             hasError: true,
             hasValue: false,
             messages: err.message,
             value: null,
-            status: status // 400: invalid payload | 406: não conseguiu processar
+            status: status // null | 400: invalid payload | 406: não conseguiu processar
         }
     }
 }

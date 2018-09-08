@@ -12,32 +12,6 @@ module.exports = defaultRoutes = {
     export: () => {
         console.log('App: set Default Routes'); // log
 
-        // simple login and jwt token
-        router.post('/login', function (req, res, next) {
-            let requestPost = req.body;
-
-            // dispatch
-            loginDispatch({
-                type: loginActions.SIGN_IN,
-                payload: requestPost
-            }).then((data) => {
-                res.status(data.status).json(data);
-            }, (err) => {
-                res.status(err.status).json(err);
-            });
-        });
-        // simple logout
-        router.get('/logout', auth.bearerAuthentication, function (req, res, next) {
-            // dispatch
-            loginDispatch({
-                type: loginActions.SIGN_OUT,
-                payload: null
-            }).then((data) => {
-                res.status(data.status).json(data);
-            }, (err) => {
-                res.status(err.status).json(err);
-            });
-        });
 
         // application authorize
         router.get('/oauth/authorize', function (req, res, next) {
@@ -51,6 +25,7 @@ module.exports = defaultRoutes = {
                 res.status(err.status).json(err);
             });
         });
+
         // application authentication
         router.post('/oauth/token', function (req, res, next) {
             let requestPost = req.body;
@@ -64,9 +39,33 @@ module.exports = defaultRoutes = {
             });
         });
 
-        router.get('/TESTE', auth.applicationAuthorization, function (req, res, next) {
-            res.status(200).json("Autorizado");
+        // simple login
+        router.post('/oauth/login', auth.beaderAuthentication, function (req, res, next) {
+            let requestPost = req.body;
+            // dispatch
+            loginDispatch({
+                type: loginActions.SIGN_IN,
+                payload: requestPost
+            }).then((data) => {
+                res.status(data.status).json(data);
+            }, (err) => {
+                res.status(err.status).json(err);
+            });
         });
+
+        // simple logout
+        router.get('/oauth/logout', function (req, res, next) {
+            // dispatch
+            loginDispatch({
+                type: loginActions.SIGN_OUT,
+                payload: null
+            }).then((data) => {
+                res.status(data.status).json(data);
+            }, (err) => {
+                res.status(err.status).json(err);
+            });
+        });
+        
         return router;
     }
 };

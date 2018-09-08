@@ -1,15 +1,14 @@
-const routes = require('express').Router();
+const router = require('express').Router();
+const auth = require('./../../../../../server/auth/auth');
 
 module.exports = cmAppNameRoutes = {
     export: () => {
         console.log('App: set AppName Routes');
-        
-        routes.get('/login', function (req, res, next) {
-            res.status(200).json({
-                msg: 'appName Login'
-            });
+
+        router.get('/TESTE', auth.basicAuthentication, function (req, res, next) {
+            res.status(200).json("Autorizado");
         });
 
-        return routes;
+        return router;
     }
 };
