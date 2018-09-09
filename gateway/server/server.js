@@ -35,7 +35,11 @@ module.exports = Server = {
 
     setAppRun: (apiMainRoute) => {
         console.log('Server: set app to run'); // log
-        // App set yours routes, with {apiMainRoute} reference
+
+        /**
+         * App set yours routes, 
+         * with {apiMainRoute} reference
+         */
         Server.App.setAppRoutes(apiMainRoute);
     },
 

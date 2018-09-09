@@ -1,0 +1,202 @@
+{
+	"info": {
+		"_postman_id": "79054cf4-51ee-4d55-b82d-81235ac4e498",
+		"name": "NODE_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/oauth/authorize",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/api/v0/default/oauth/authorize?client_id=123&response_type=code",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v0",
+						"default",
+						"oauth",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "123"
+						},
+						{
+							"key": "response_type",
+							"value": "code"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/oauth/token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "authorization_code",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRfaWQiOiIxMjMiLCJpYXQiOjE1MzYyNjYyMzgsImV4cCI6MTUzNjI2NjI5OH0.0Mks_SIWA1fW3WWxSRFFnPXpOf4e5KJNYpa3ubT0umY",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "ABC123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/v0/default/oauth/token",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v0",
+						"default",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user\": \"Rob\",\n\t\"pwd\": \"teste\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v0/default/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v0",
+						"default",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/logout",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer "
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "user",
+							"value": "TESTE",
+							"type": "text"
+						},
+						{
+							"key": "pwd",
+							"value": "TESTE",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v0/default/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v0",
+						"default",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Teste application authorization ",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRfaWQiOiIxMjMiLCJjbGllbnRfc2VjcmV0IjoiQUJDMTIzIiwiaWF0IjoxNTM2MjY2MjQ3LCJleHAiOjE1MzYzNTI2NDd9.zEpFuEIdtfaaxmWva4uMq3YHDO91PY3Vr73FSitnPY0"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/api/v0/default/TESTE",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v0",
+						"default",
+						"TESTE"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
