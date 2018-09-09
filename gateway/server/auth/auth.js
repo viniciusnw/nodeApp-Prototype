@@ -41,8 +41,9 @@ module.exports = Auth = {
         let headers = reqHeaders.headers;
 
         return new Promise((resolve, reject) => {
-            // No Header content
+            // No DEFAULT Header content
             if (!headers) reject(responsePayload.errorResponse(new Error('No header provided.'), 401));
+            // No DEFAULT Header content
 
             // No target Header content
             if (target in headers) {
@@ -50,14 +51,14 @@ module.exports = Auth = {
                 switch (target) {
                     case 'authorization-user':
                         if (auth[0] === 'Basic')
-                            resolve(headers[target].split(' ')[1]);
+                            resolve(auth[1]);
                         else
                             reject(responsePayload.errorResponse(new Error('No token provided.'), 401));
                         break;
 
                     case 'authorization-token':
                         if (auth[0] === 'Bearer')
-                            resolve(headers[target].split(' ')[1]);
+                            resolve(auth[1]);
                         else
                             reject(responsePayload.errorResponse(new Error('No token provided.'), 401));
                 }

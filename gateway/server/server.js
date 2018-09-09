@@ -29,7 +29,6 @@ module.exports = Server = {
          */
         Server.express.get('/favicon.ico', (req, res) => res.sendStatus(204));
         Server.express.get('/robots.txt', (req, res) => res.sendStatus(204));
-        Server.express.get('/teste', (req, res) => res.sendStatus(204));
         console.log('Server: set configs'); // log
     },
 

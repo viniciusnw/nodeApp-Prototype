@@ -10,10 +10,19 @@ module.exports = App = {
         // SET MAIN ROUTES
 
         /**
+         * Auth Routes
+         */
+        Server.express.use(
+            apiMainRoute + '/oauth',
+            AppRoutes.oauthRoutes.export()
+        );
+
+        /**
          * Default Routes
          */
         Server.express.use(
             apiMainRoute + '/default',
+            auth.beaderAuthentication,
             AppRoutes.defaultRoutes.export()
         );
 
