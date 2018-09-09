@@ -5,34 +5,32 @@ module.exports = Auth = {
 
     // check basic
     basicAuthentication: (req, res, next) => {
-        Auth.getHeaders(req, 'authorization-user').then((Basic) => {
-            jwt.verify(Basic, 'process.env.SECRET_basic', function (err, decoded) {
-                if (err) {
-                    let data = responsePayload.errorResponse(err, 401);
-                    res.status(data.status).json(data);
-                } else {
-                    req.decodedBearerAuthentication = decoded;
+        Auth.getHeaders(req, 'authorization-user').then(Basic => {
+
+            jwt.verify(Basic, 'process.env.SECRET_basic', (err, decoded) => {
+                if (err) res.status(401).json(responsePayload.errorResponse(err));
+                else {
+                    req.decodedBasicAuthentication = decoded;
                     next();
                 }
             });
-        }, (err) => {
+        }, err => {
             res.status(err.status).json(err);
         });
     },
 
     // check bearer 
     beaderAuthentication: (req, res, next) => {
-        Auth.getHeaders(req, 'authorization-token').then((Beader) => {
-            jwt.verify(Beader, 'process.env.SECRET_bearer', function (err, decoded) {
-                if (err) {
-                    let data = responsePayload.errorResponse(err, 401);
-                    res.status(data.status).json(data);
-                } else {
+        Auth.getHeaders(req, 'authorization-token').then(Beader => {
+
+            jwt.verify(Beader, 'process.env.SECRET_bearer', (err, decoded) => {
+                if (err) res.status(401).json(responsePayload.errorResponse(err));
+                else {
                     req.decodedBearerAuthentication = decoded;
                     next();
                 }
             });
-        }, (err) => {
+        }, err => {
             res.status(err.status).json(err);
         });
     },

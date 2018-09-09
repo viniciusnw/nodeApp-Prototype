@@ -19,8 +19,7 @@ module.exports = login = {
     AUTHORIZE: 'AUTHORIZE',
     AUTHORIZE_schema: schemaToValidate => {
         let schema = Joi.object().keys({
-            client_id: Joi.required(),
-            response_type: Joi.required()
+            client_id: Joi.required()
         });
         return Joi.validate(schemaToValidate, schema);
     },

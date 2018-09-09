@@ -4,7 +4,6 @@ const router = require('express').Router();
 const storeModule = require('./../../../../store/store-module');
 const loginActions = storeModule.actions.login; // actions
 const loginDispatch = storeModule.dispatchers.login; // disparo
-
 const auth = require('./../../../../../server/auth/auth');
 
 module.exports = defaultRoutes = {
@@ -42,6 +41,9 @@ module.exports = defaultRoutes = {
         // simple login
         router.post('/oauth/login', auth.beaderAuthentication, function (req, res, next) {
             let requestPost = req.body;
+
+            // console.log(req.decodedBearerAuthentication);
+
             // dispatch
             loginDispatch({
                 type: loginActions.SIGN_IN,
@@ -65,7 +67,7 @@ module.exports = defaultRoutes = {
                 res.status(err.status).json(err);
             });
         });
-        
+
         return router;
     }
 };

@@ -1,12 +1,13 @@
 class LoginReducers {
     constructor() {
         this.jwt = require('jsonwebtoken');
+        
         this.clientMock = {
             client_name: 'Client Name', // Name
-            client_id: 123, // public
+            client_id: 123, // public id
             client_secret: 'ABC123', // secret
-            response_type: 'code', // res_type 
         };
+
         this.userMock = {
             user: 'Rob',
             pwd: 'teste'
@@ -43,11 +44,12 @@ class LoginReducers {
 
         return {
             // access_token
-            access_token: 'Bearer ' + this.jwt.sign({
-                client: this.clientMock
-            }, 'process.env.SECRET_bearer', {
-                expiresIn: 86400 // 24h
-            }),
+            access_token: 'Bearer ' + this.jwt.sign(
+                this.clientMock,
+                'process.env.SECRET_bearer', {
+                    expiresIn: 86400
+                } // 24h
+            ),
             token_type: "bearer",
             expires_in: "86400 : 24h",
             host: "www.cmtecnologia.com.br",
@@ -71,7 +73,7 @@ class LoginReducers {
     }
 
     // logout
-    logout(){
+    logout() {
         return {
             user: null,
             pwd: null,
