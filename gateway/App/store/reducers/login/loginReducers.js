@@ -2,9 +2,11 @@ const Store = require('./../../store/store');
 
 class LoginReducers {
     constructor() {
-        this.jwt = require('jsonwebtoken');
-        this.client = Store.client.get();
-        this.user = Store.user.get();
+        this.jwt = require('jsonwebtoken');  
+        
+        Store.dbCon.createConnection(); // promisse
+        this.client = this.Store.client.get();
+        this.user = this.Store.user.get();
     }
 
     // authentication service
