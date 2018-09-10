@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const auth = require('./../../../server/auth/auth');
 
-//Login Redux
+//Load Store Module
 const storeModule = require('./../../store/store-module');
+// Login Redux (Store Module)
 const loginActions = storeModule.actions.login; // actions
 const loginDispatch = storeModule.dispatchers.login; // disparo
 
@@ -10,7 +11,6 @@ module.exports = oauthRoutes = {
 
     export: () => {
         console.log('App: set oAuth Routes'); // log
-
 
         // application authorize
         router.get('/authorize', function (req, res, next) {

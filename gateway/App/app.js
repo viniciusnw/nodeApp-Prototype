@@ -2,6 +2,7 @@ const AppRoutes = require('./api/routes/routes');
 const auth = require('./../server/auth/auth');
 
 module.exports = App = {
+
     // App set routes
     setAppRoutes: (apiMainRoute) => {
         // log

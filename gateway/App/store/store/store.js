@@ -1,49 +1,48 @@
-const Rx = require('rxjs');
+const mysql = require('mysql');
 
+// dbCon.connect((err) => {
+//     if (err) throw err;
+//     else console.log('App: connect in [host]-[db] database!');
+// });
+// dbCon.query("SELECT name, address FROM customers", function (err, result, fields) {
+//     if (err) throw err;
+//     console.log(fields);
+// });
+
+// module.exports = dbCon = {
+//     createConnection: mysql.createConnection({
+//         host: "db-dev.server.cmtecnologia.com.br",
+//         user: "root",
+//         password: "+cmdev01_",
+//         database: "cmtecnologia"
+//     }),
+
+//     conn: dbCon.createConnection.connect((err) => {
+//         if (err) throw err;
+//         else console.log('App: connect in [host]-[db] database!');
+//     })
+// };
+
+module.exports = dbCon = {
+    createConnection: () => mysql.createConnection({
+        host: "db-dev.server.cmtecnologia.com.br",
+        user: "root",
+        password: "+cmdev01_",
+        database: "cmtecnologia"
+    })
+}
+
+let conn = dbCon.createConnection();
+conn.connect((err) => {
+    if (err) throw err;
+    else console.log('App: connect in [host]-[db] database!');
+});
+
+// Load store modules
+const client = require('./models/client');
+const user = require('./models/user');
 module.exports = Store = {
-    // SIGN_IN: new Rx.Subject(),
-    // SIGN_OUT: new Rx.Subject(),
-
-    // {
-    //     hasAlerta: false,
-    //     hasError: false,
-    //     hasInfo: false,
-    //     hasValue: true,
-    //     hasWarning: false,
-    //     messages: [],
-    //     ok: true,
-    //     value: "f4f33f66-f73b-4d7b-82d4-79837073a656"
-    // }
-    OUTPUT: new Rx.Subject(),
-
-    ERROR_OUTPUT__CHANGE_STATE: function (err) {
-        Store.OUTPUT__CHANGE_STATE({
-            hasError: true,
-            hasValue: false,
-            messages: err,
-            value: null
-        });
-    },
-
-    SUCCESS_OUTPUT__CHANGE_STATE: function (data) {
-        Store.OUTPUT__CHANGE_STATE({
-            hasError: false,
-            hasValue: true,
-            messages: null,
-            value: data
-        });
-    },
-
-    OUTPUT__CHANGE_STATE: function (objState) {
-        setTimeout(() => {
-            Store.OUTPUT.next(objState)
-        }, 5000);
-    },
-
-    // SIGN_IN__CHANGE_STATE: function(newState){
-    //     Store.SIGN_IN.next(newState);
-    // },
-    // SIGN_OUT__CHANGE_STATE: function(newState){
-    //     Store.SIGN_OUT.next(newState);
-    // }
+    dbCon,
+    client,
+    user
 };

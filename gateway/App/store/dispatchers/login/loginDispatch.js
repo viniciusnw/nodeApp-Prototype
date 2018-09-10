@@ -1,14 +1,13 @@
-const LoginReducersClass = require('./../../reducers/reducers').login;
-const loginActions = require('./../../actions/login/loginActions');
+// ACTION & REDUCER
+const loginActions = require('./../../actions/actions').login; // for check type
+const LoginReducersClass = require('./../../reducers/reducers').login; // for execute micro-service
+// response payload
 const responsePayload = require('../responsePayload');
 
-// Store
-// const Store = require('./../../store/store');
-
-module.exports = login = function (dispatchObj, callbackFunction = () => null) {
+module.exports = login = function (dispatchObj) {
     console.log('DISPATCH: login | ACTION: ' + dispatchObj.type);
 
-    // login reducers Instance
+    // LOAD REDUCER - login reducers Instance
     let loginReducers = new LoginReducersClass();
 
     return new Promise(function (resolve, reject) {
