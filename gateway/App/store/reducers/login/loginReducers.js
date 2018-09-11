@@ -2,29 +2,24 @@ const Store = require('./../../store/store');
 
 class LoginReducers {
     constructor() {
-        this.jwt = require('jsonwebtoken');  
-        
-        Store.dbCon.createConnection(); // promisse
-        this.client = this.Store.client.get();
-        this.user = this.Store.user.get();
+        this.jwt = require('jsonwebtoken');
     }
 
     // authentication service
-    authentication(payload) {
-        let jwt_authorization_code;
-        // check client id
-        if (this.client.client_id == payload.client_id)
-            // Use client_secret for embed 'jwt_authorization_code'
-            jwt_authorization_code = this.jwt.sign({
-                client_id: payload.client_id
-            }, this.client.client_secret, {
-                expiresIn: 60 // 1min
-            });
-        else throw new Error('Failed to authentication');
+    authentication(payload){
+        return Store.client.get(payload.client_id).then(client => {
+            if (!client.length) throw new Error('Failed to authentication');
 
-        return {
-            authorization_code: jwt_authorization_code
-        };
+            return {
+                authorization_code: this.jwt.sign({
+                    client_user: client[0].ws_user
+                }, client[0].ws_pass, {
+                    expiresIn: 60 // 1min
+                })
+            };
+        }, err => {
+            throw new Error(err);
+        });
     }
 
     // authorization Bearer
@@ -51,8 +46,10 @@ class LoginReducers {
 
     // authorization Basic
     authorizationBasic(payload) {
+        let user = Store.user.get();
+
         // simule valid authenticate
-        if (payload.user == this.user.user && payload.pwd == this.user.pwd) return {
+        if (payload.user == user.user && payload.pwd == user.pwd) return {
             access_token: "Basic " + this.jwt.sign({
                 user: payload.user,
                 pwd: payload.pwd
