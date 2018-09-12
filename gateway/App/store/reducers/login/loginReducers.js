@@ -3,11 +3,11 @@ const Store = require('./../../store/store');
 class LoginReducers {
     constructor() {
         this.jwt = require('jsonwebtoken');
-    }
+    };
 
     // authentication service
-    authentication(payload){
-        return Store.client.get(payload.client_id).then(client => {
+    authentication(payload) {
+        return Store.Models.client.get(payload.client_id).then(client => {
             if (!client.length) throw new Error('Failed to authentication');
 
             return {
@@ -62,9 +62,7 @@ class LoginReducers {
     // logout
     logout() {
         return {
-            user: null,
-            pwd: null,
-            authorization: null,
+            access_token: null,
         };
     }
 
@@ -81,3 +79,56 @@ class LoginReducers {
 }
 
 module.exports = LoginReducers;
+
+// MODEL 
+
+// oAuth/Authorize
+// {
+//     "$schema": "http://json-schema.org/draft-04/schema#",
+//     "title": "oAuth/Authorize",
+//     "type": "object",
+//     "properties":{
+//         "authorization_code": {
+//             "type": "string"
+//         }
+//     }
+// }
+
+// oAuth/Token
+// {
+//     "$schema": "http://json-schema.org/draft-04/schema#",
+//     "title": " oAuth/Token",
+//     "type": "object",
+//     "properties":{
+//         "access_token": {
+//             "type": "string"
+//         },
+//         "token_type": {
+//             "type": "string"
+//         },
+//         "expires_in": {
+//             "type": "string"
+//         },
+//         "host":{
+//             "type": "string"
+//         },
+//         "msg":{
+//             "type": "string"
+//         }
+//     }
+// }
+
+// oAuth/Login
+// {
+//     "$schema": "http://json-schema.org/draft-04/schema#",
+//     "title": "oAuth/Login",
+//     "type": "object",
+//     "properties":{
+//         "access_token": {
+//             "type": "string"
+//         },
+//         "token_type": {
+//             "type": "string"
+//         }
+//     }
+// }

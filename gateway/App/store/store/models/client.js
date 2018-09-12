@@ -1,24 +1,28 @@
+const models = require('./../models');
+
 module.exports = client = {
+    
     /**
      * Get client peer ID
      */
-    get: (id) => client.queryExecute(`SELECT * FROM clientes WHERE id = ${id}`),
+    get: (id) => models.mySql_queryExecute(`SELECT * FROM clientes WHERE id = ${id}`),
+    pgGet: (id) => models.pg_queryExecute(`SELECT * FROM clientes WHERE id = ${id}`),
     post: () => {},
     put: () => {},
-    delete: () => {},
-    // ------------------------------------------
-    queryExecute: (SQL) => {
-        return new Promise((resolve, reject) => {
-            // return connected
-            Store.dbCon.connect().then(conn => {
-                // objeto de conexão
-                conn.query(SQL, function (err, result, fields) {
-                    if (err) reject(err);
-                    resolve(result);
-                });
-            }, err => { // return not-connected
-                reject(err);
-            });
-        });
-    }
+    delete: () => {}
 }
+
+// Client Model return
+// {
+//     "$schema": "http://json-schema.org/draft-04/schema#",
+//     "title": "Client",
+//     "type": "object",
+//     "properties":{
+//         "client_id": {
+//             "type": "string"
+//         },
+//         "client_secret": {
+//             "type": "string"
+//         }
+//     }
+// }

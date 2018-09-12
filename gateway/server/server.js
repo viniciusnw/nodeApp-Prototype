@@ -17,7 +17,7 @@ module.exports = Server = {
         /**
          * Set up public files
          */
-        // ----------------------
+        // -----------------------
 
         /**
          * For parse POST requests
