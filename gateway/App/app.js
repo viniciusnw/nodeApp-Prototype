@@ -11,10 +11,10 @@ module.exports = App = {
         // SET MAIN ROUTES
 
         /**
-         * Auth Routes
+         * Auth Routes /oauth
          */
         Server.express.use(
-            apiMainRoute + '/oauth',
+            apiMainRoute + ENV.ROUTES.oauthRoutes.path,
             AppRoutes.oauthRoutes.export()
         );
 

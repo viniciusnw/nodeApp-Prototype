@@ -1,11 +1,9 @@
 // express config
 const express = require('express');
 const bodyParser = require('body-parser');
-// express config
 
 // App
 const App = require('./../App/app');
-
 
 module.exports = Server = {
     // injeção de dependencia

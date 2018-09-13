@@ -7,13 +7,13 @@ class LoginReducers {
 
     // authentication service
     authentication(payload) {
-        return Store.Models.client.get(payload.client_id).then(client => {
-            if (!client.length) throw new Error('Failed to authentication');
+        return Store.Models.client.get(payload.client_id).then(data => {
+            if (!data.length) throw new Error('Failed to authentication');
 
             return {
                 authorization_code: this.jwt.sign({
-                    client_user: client[0].ws_user
-                }, client[0].ws_pass, {
+                    client_id: data[0].client_id
+                }, data[0].client_secret, {
                     expiresIn: 60 // 1min
                 })
             };

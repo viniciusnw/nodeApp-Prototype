@@ -25,7 +25,7 @@ module.exports.pgCon = {
     // connection string
     conString: "postgres://username:password@localhost/database",
     connect: () => new Promise((resolve, reject) => {
-        this.pgCon.connect(this.pgCon.conString, (err, client, done) => {
+        pg.connect(this.pgCon.conString, (err, client, done) => {
             if (err) reject(err.message);
             else {
                 console.log('App: [pgCon] - connect in [host]-[db] database!');

@@ -1,8 +1,9 @@
 const Server = require('./gateway/server/server');
+const ENV = require('./gateway/environments/env');
 
 (function () {
     Server.config();
-    Server.setAppRun('/api/v0');
+    Server.setAppRun(ENV.ROUTES.apiMainRoute + ENV.ROUTES.version);
     Server.run();
 }());
 
@@ -22,4 +23,4 @@ const Server = require('./gateway/server/server');
 // https://dashboard.ngrok.com/get-started
 
 // - http request -
-// https://www.twilio.com/blog/2017/08/http-requests-in-node-js.html
+// https://www.twilio.com/blog/2017/08/http-requests-in-node-js.html!@

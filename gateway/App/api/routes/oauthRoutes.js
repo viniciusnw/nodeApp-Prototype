@@ -13,8 +13,9 @@ module.exports = oauthRoutes = {
         console.log('App: set oAuth Routes'); // log
 
         // application authorize
-        router.get('/authorize', function (req, res, next) {
+        router.get(ENV.ROUTES.oauthRoutes.childs.authorize.path, function (req, res, next) {
             let queryParams = req.query;
+            console.log(req);
             loginDispatch({
                 type: loginActions.AUTHORIZE,
                 payload: queryParams
@@ -26,7 +27,7 @@ module.exports = oauthRoutes = {
         });
 
         // application authentication
-        router.post('/token', function (req, res, next) {
+        router.post(ENV.ROUTES.oauthRoutes.childs.token.path, function (req, res, next) {
             let requestPost = req.body;
             loginDispatch({
                 type: loginActions.AUTHORIZE_TOKEN,
@@ -39,7 +40,7 @@ module.exports = oauthRoutes = {
         });
 
         // simple login
-        router.post('/login', auth.beaderAuthentication, function (req, res, next) {
+        router.post(ENV.ROUTES.oauthRoutes.childs.login.path, auth.beaderAuthentication, function (req, res, next) {
             let requestPost = req.body;
 
             // console.log(req.decodedBearerAuthentication);
@@ -56,7 +57,7 @@ module.exports = oauthRoutes = {
         });
 
         // simple logout
-        router.get('/logout', function (req, res, next) {
+        router.get(ENV.ROUTES.oauthRoutes.childs.logout.path, function (req, res, next) {
             // dispatch
             loginDispatch({
                 type: loginActions.SIGN_OUT,

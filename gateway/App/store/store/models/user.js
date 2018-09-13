@@ -1,15 +1,4 @@
-module.exports = user = {
-    
-    get: () => ({
-        client_id: 1,
-        name: 'Rob Doe',
-        user: 'Rob',
-        pwd: 'teste'
-    }),
-    post: () => {},
-    put: () => {},
-    delete: () => {}
-}
+const models = require('./../models');
 
 // User Model return
 // {
@@ -31,3 +20,22 @@ module.exports = user = {
 //         }
 //     }
 // }
+const useMock = {
+    client_id:'',
+    name: '',
+    user: '',
+    pwd: ''
+}
+
+module.exports = user = {
+    
+    get: () => ({
+        client_id: 1,
+        name: 'Rob Doe',
+        user: 'Rob',
+        pwd: 'teste'
+    }),
+    post: () => {},
+    put: () => {},
+    delete: () => {}
+}

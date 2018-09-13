@@ -1,17 +1,5 @@
 const models = require('./../models');
 
-module.exports = client = {
-    
-    /**
-     * Get client peer ID
-     */
-    get: (id) => models.mySql_queryExecute(`SELECT * FROM clientes WHERE id = ${id}`),
-    pgGet: (id) => models.pg_queryExecute(`SELECT * FROM clientes WHERE id = ${id}`),
-    post: () => {},
-    put: () => {},
-    delete: () => {}
-}
-
 // Client Model return
 // {
 //     "$schema": "http://json-schema.org/draft-04/schema#",
@@ -26,3 +14,18 @@ module.exports = client = {
 //         }
 //     }
 // }
+const clientMock = {
+    client_id: '1',
+    client_secret: 'ABC123'
+}
+
+module.exports = client = {
+    // get: (id) => models.mySql_queryExecute(`SELECT * FROM clientes WHERE id = ${id}`),
+    // pgGet: (id) => models.pg_queryExecute(`SELECT * FROM clientes WHERE id = ${id}`),
+    get: (id) => new Promise((resolve, reject) => {
+        resolve([clientMock])
+    }),
+    post: () => {},
+    put: () => {},
+    delete: () => {}
+}
