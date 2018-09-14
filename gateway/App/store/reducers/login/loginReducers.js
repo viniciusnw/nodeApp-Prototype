@@ -54,6 +54,7 @@ class LoginReducers {
     //     }
     // }
     authorizationBearer(payload) {
+        
         return Store.Models.client.get(payload.client_id).then(data => {
             let clientValidate;
             try {
