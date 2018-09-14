@@ -1,24 +1,27 @@
-const AppRoutes = require('./api/routes/routes');
 const auth = require('./../server/auth/auth');
+const AppRoutes = require('./api/routes/routes');
 
 module.exports = App = {
+    // string routes
+    Routes: ENV.ROUTES,
 
     // App set routes
     setAppRoutes: (apiMainRoute) => {
-        // log
-        console.log('App: START set Routes');
+        console.log('App: START set Routes'); // log
 
         // SET MAIN ROUTES
-
         /**
          * Auth Routes /oauth
          */
         Server.express.use(
-            apiMainRoute + ENV.ROUTES.oauthRoutes.path,
-            AppRoutes.oauthRoutes.export()
+            apiMainRoute + App.Routes.oauthRoutes.path, // route
+            AppRoutes.oauthRoutes.export() // export routes for express
         );
 
         /**
+         * all routes after then, use auth.beaderAuthentication for access
+         * for application level security
+         * 
          * Default Routes
          */
         Server.express.use(

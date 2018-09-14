@@ -1,6 +1,10 @@
+// LOAD SERVER APP
 const Server = require('./gateway/server/server');
+
+// LOAD ENVIRONMENTS FOR SERVER
 const ENV = require('./gateway/environments/env');
 
+// RUN TIME
 (function () {
     Server.config();
     Server.setAppRun(ENV.ROUTES.apiMainRoute + ENV.ROUTES.version);

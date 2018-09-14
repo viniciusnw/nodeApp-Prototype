@@ -1,5 +1,5 @@
-const router = require('express').Router();
 const auth = require('./../../../server/auth/auth');
+const router = require('express').Router();
 
 //Load Store Module
 const storeModule = require('./../../store/store-module');
@@ -8,17 +8,18 @@ const loginActions = storeModule.actions.login; // actions
 const loginDispatch = storeModule.dispatchers.login; // disparo
 
 module.exports = oauthRoutes = {
+    // string routes
+    Routes: ENV.ROUTES.oauthRoutes.childs,
 
     export: () => {
         console.log('App: set oAuth Routes'); // log
 
         // application authorize
-        router.get(ENV.ROUTES.oauthRoutes.childs.authorize.path, function (req, res, next) {
-            let queryParams = req.query;
-            console.log(req);
+        router.get(oauthRoutes.Routes.authorize.path, function (req, res, next) {
+            let payloadQuery = req.query;
             loginDispatch({
                 type: loginActions.AUTHORIZE,
-                payload: queryParams
+                payload: payloadQuery
             }).then((data) => {
                 res.status(data.status).json(data);
             }, (err) => {
@@ -27,11 +28,11 @@ module.exports = oauthRoutes = {
         });
 
         // application authentication
-        router.post(ENV.ROUTES.oauthRoutes.childs.token.path, function (req, res, next) {
-            let requestPost = req.body;
+        router.post(oauthRoutes.Routes.token.path, function (req, res, next) {
+            let payloadBody = req.body;
             loginDispatch({
                 type: loginActions.AUTHORIZE_TOKEN,
-                payload: requestPost
+                payload: payloadBody
             }).then((data) => {
                 res.status(data.status).json(data);
             }, (err) => {
@@ -40,15 +41,16 @@ module.exports = oauthRoutes = {
         });
 
         // simple login
-        router.post(ENV.ROUTES.oauthRoutes.childs.login.path, auth.beaderAuthentication, function (req, res, next) {
-            let requestPost = req.body;
+        router.post(oauthRoutes.Routes.login.path, auth.beaderAuthentication, function (req, res, next) {
+            let payloadBody = req.body;
 
+            // user token traffer
             // console.log(req.decodedBearerAuthentication);
 
             // dispatch
             loginDispatch({
                 type: loginActions.SIGN_IN,
-                payload: requestPost
+                payload: payloadBody
             }).then((data) => {
                 res.status(data.status).json(data);
             }, (err) => {
@@ -57,7 +59,7 @@ module.exports = oauthRoutes = {
         });
 
         // simple logout
-        router.get(ENV.ROUTES.oauthRoutes.childs.logout.path, function (req, res, next) {
+        router.get(oauthRoutes.Routes.logout.path, function (req, res, next) {
             // dispatch
             loginDispatch({
                 type: loginActions.SIGN_OUT,

@@ -14,16 +14,18 @@ const models = require('./../models');
 //         }
 //     }
 // }
-const clientMock = {
+const clientMock = [{
     client_id: '1',
     client_secret: 'ABC123'
-}
+}]
 
 module.exports = client = {
     // get: (id) => models.mySql_queryExecute(`SELECT * FROM clientes WHERE id = ${id}`),
     // pgGet: (id) => models.pg_queryExecute(`SELECT * FROM clientes WHERE id = ${id}`),
     get: (id) => new Promise((resolve, reject) => {
-        resolve([clientMock])
+        let auth = clientMock.find(c => c.client_id == id);
+        if (!auth) reject();
+        resolve(auth);
     }),
     post: () => {},
     put: () => {},

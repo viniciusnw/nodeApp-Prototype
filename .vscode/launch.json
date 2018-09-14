@@ -12,12 +12,12 @@
             "runtimeArgs": ["run-script", "debug"],
             "port": 9229
         },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}/index.js",
-            "cwd": "${workspaceFolder}",
-        }
+        // {
+        //     "type": "node",
+        //     "request": "launch",
+        //     "name": "Launch Program",
+        //     "program": "${workspaceFolder}/index.js",
+        //     "cwd": "${workspaceFolder}",
+        // }
     ]
 }

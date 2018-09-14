@@ -13,7 +13,7 @@ module.exports = login = {
 
     // SIGN OUT
     SIGN_OUT: 'SIGN_OUT',
-    SIGN_OUT_schema: (schemaToValidate) => schemaToValidate,
+    SIGN_OUT_schema: schemaToValidate => schemaToValidate,
 
     // AUTHORIZE
     AUTHORIZE: 'AUTHORIZE',

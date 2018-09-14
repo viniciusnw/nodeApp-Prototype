@@ -1,16 +1,17 @@
 // express config
+// express and express plugins
 const express = require('express');
 const bodyParser = require('body-parser');
 
-// App
-const App = require('./../App/app');
+// LOAD ENVIRONMENTS FOR SERVER and APP
+const ENV = require('./../environments/env');
 
 module.exports = Server = {
-    // injeção de dependencia
-    express: express(), // express for API-server ( /api/v0 route root )
-    App: App, // App run into route root API-server
+    // injeção de dependencia **
+    express: express(), // INJECT express for HTTP HOST
+    App:  require('./../App/app'), // INJECT App to run
 
-    // middlewares
+    // Express configs and plugins
     config: () => {
         /**
          * Set up public files
@@ -33,6 +34,7 @@ module.exports = Server = {
         console.log('Server: set configs'); // log
     },
 
+    // Set app to run
     setAppRun: (apiMainRoute) => {
         console.log('Server: set app to run'); // log
 

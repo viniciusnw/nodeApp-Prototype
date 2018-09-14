@@ -20,22 +20,31 @@ const models = require('./../models');
 //         }
 //     }
 // }
-const useMock = {
-    client_id:'',
-    name: '',
-    user: '',
-    pwd: ''
-}
+const userMock = [{
+    client_id: 1,
+    name: 'Rob Doe',
+    user: 'Rob',
+    pwd: 'teste'
+}];
 
 module.exports = user = {
-    
-    get: () => ({
-        client_id: 1,
-        name: 'Rob Doe',
-        user: 'Rob',
-        pwd: 'teste'
+
+    // READ
+    get: () => new Promise((resolve, reject) => {
+        resolve([useMock]);
     }),
+    login: (user, pwd) => new Promise((resolve, reject) => {
+        let logged = userMock.find(u => u.user == user && u.pwd == pwd);
+        if (!logged) reject();
+        resolve(logged);
+    }),
+
+    // CREATE
     post: () => {},
+
+    // UPDATE
     put: () => {},
+
+    // DELETE
     delete: () => {}
 }
