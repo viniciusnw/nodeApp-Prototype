@@ -80,31 +80,52 @@ getAppToken()
                         // save token in cookie
                         createCookie('authorization_access_token', data.value.access_token, 1);
                         console.log('token saved: ' + data.value.access_token);
-                    }).fail((jqXHR) => {
-                        console.log(jqXHR);
+                    }).fail((err) => {
+                        console.log(err);
                     });
 
-                }).fail((jqXHR) => {
-                    console.log(jqXHR);
+                }).fail((err) => {
+                    console.log(err);
                 });
             }
         }
 
         /**
+         * Login Utils
+         */
+        function verifyLogin() {
+            let lin = $('#loggin-form');
+            let lout = $('#logout-submit');
+
+            if (readCookie('user_access_token')) {
+                lin.css('display', 'none');
+                lout.css('display', 'block');
+            } else {
+                lin.css('display', 'block');
+                lout.css('display', 'none');
+            }
+        }
+        /**
          * Login action
          */
         function loginEvent() {
-            // Execute Login
             $('#loggin-form').submit((e) => {
                 e.preventDefault();
-
                 let user = $(e.target).find('#user').val();
                 let pwd = MD5($(e.target).find('#pwd').val());
-
-                // call login
                 login(user, pwd).done((data) => {
                     console.log("Logged: " + readCookie('user_access_token'));
+                    verifyLogin();
                 });
+            });
+        }
+        /**
+         * Login action
+         */
+        function logoutEvent() {
+            $('#logout-submit').on('click', e => {
+                eraseCookie('user_access_token');
+                verifyLogin();
             });
         }
 
@@ -112,7 +133,10 @@ getAppToken()
          * START APPLICATION
          */
         boostrap();
+        // --
+        verifyLogin();
         loginEvent();
+        logoutEvent();
     })
     .fail(err => {
         // no app token provider

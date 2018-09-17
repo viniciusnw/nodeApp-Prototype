@@ -5,14 +5,13 @@
     const client = {
         id: 'd41d8cd98f00b204e9800998ecf8427e', // public key
         secret: '21232f297a57a5a743894a0e4a801fc3', // private key
-        signature: 'process.env.SECRET_application' // private application signature key
+        // -- //
+        signature: 'process.env.SECRET_application' // public application signature key
     };
     const app = express();
 
     // uses
-    app.use(express.static(__dirname + '/public', {
-        maxAge: 24 * 60 * 60 * 1000
-    }));
+    app.use(express.static(__dirname + '/public'));
     // set
     app.set('port', 4000);
     // prevent GET send 204 status {no content}
