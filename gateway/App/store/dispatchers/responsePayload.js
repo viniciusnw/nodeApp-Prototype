@@ -24,6 +24,6 @@ module.exports = responsePayload = {
             messages: err.message,
             value: null,
             status: status // null | 400: invalid payload | 406: não conseguiu processar
-        }
+        };
     }
-}
+};

@@ -21,10 +21,10 @@ const models = require('./../models');
 //     }
 // }
 const userMock = [{
-    client_id: 1,
-    name: 'Rob Doe',
-    user: 'Rob',
-    pwd: 'teste'
+    client_id: 'd41d8cd98f00b204e9800998ecf8427e', // <- client_id reference {1}
+    name: 'Rob Doe', // user name
+    user: 'Rob', // user
+    pwd: '698dc19d489c4e4db73e28a713eab07b' // <- teste
 }];
 
 module.exports = user = {
@@ -47,4 +47,4 @@ module.exports = user = {
 
     // DELETE
     delete: () => {}
-}
+};

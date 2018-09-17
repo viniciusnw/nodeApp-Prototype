@@ -8,20 +8,20 @@
         "npm": "5.6.0"
     },
     "scripts": {
-        "start": "set NODE_ENV=production&&node index",
-        "dev": "set NODE_ENV=development&&node index",
-        "debug": "set NODE_ENV=development&&node --nolazy --inspect-brk=9229 index",
-        "=========================":"========================",
+        "start": "cross-env NODE_ENV=production node index",
+        "dev": "cross-env NODE_ENV=development node index",
+        "debug": "cross-env NODE_ENV=development node --nolazy --inspect-brk=9229 index",
+        "=========================/": "=========================",
         "test": "echo \"Error: no test specified \" && exit 1",
-        "dev:play": "node gateway/playground",
-        "dev:d-chrome": "node --inspect index",
+        "dev:play": "node playground",
         "dev:w": "nodemon index.js",
-        "dev:w:d-chrome": "rawkit index --nodemon"
+        "=========================": "=========================",
+        "cm:app": "node ./cmAppName/index"
     },
     "devDependencies": {
+        "cross-env": "5.2.0",
         "newman": "4.1.0",
-        "nodemon": "1.18.4",
-        "rawkit": "1.3.2"
+        "nodemon": "1.18.4"
     },
     "dependencies": {
         "bcrypt": "3.0.0",

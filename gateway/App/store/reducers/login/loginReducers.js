@@ -3,7 +3,11 @@ const Store = require('./../../store/store');
 class LoginReducers {
     constructor() {
         this.jwt = require('jsonwebtoken');
-    };
+    }
+
+    jwtVerify(jwt, key) {
+        return this.jwt.verify(jwt, key);
+    }
 
     // oAuth/Authorize
     // {
@@ -17,7 +21,10 @@ class LoginReducers {
     //     }
     // }
     authentication(payload) {
-        return Store.Models.client.get(payload.client_id).then(data => {
+        // decrypt encoding application
+        let client_id = this.jwtVerify(payload.client_id, 'process.env.SECRET_application').client_id;
+
+        return Store.Models.client.get(client_id).then(data => {
             return {
                 authorization_code: this.jwt.sign({
                     client_id: data.client_id
@@ -54,15 +61,13 @@ class LoginReducers {
     //     }
     // }
     authorizationBearer(payload) {
-        
-        return Store.Models.client.get(payload.client_id).then(data => {
-            let clientValidate;
-            try {
-                clientValidate = (payload.client_id == this.jwt.verify(payload.authorization_code, payload.client_secret).client_id) ? true : false;
-            } catch (err) {
-                throw new Error(err);
-            }
-            if (!clientValidate) throw new Error('Failed to authorization!');
+        // decrypt encoding application
+        let client_id = this.jwtVerify(payload.client_id, 'process.env.SECRET_application').client_id;
+        let client_secret = this.jwtVerify(payload.client_secret, 'process.env.SECRET_application').client_secret;
+
+        return Store.Models.client.get(client_id).then(data => {
+            if (client_id != this.jwtVerify(payload.authorization_code, client_secret).client_id)
+                throw new Error('Failed to authorization!');
 
             return {
                 access_token: 'Bearer ' + this.jwt.sign(data, 'process.env.SECRET_bearer', {
@@ -72,7 +77,7 @@ class LoginReducers {
                 expires_in: '86400:24h',
                 host: "www.cmtecnologia.com.br",
                 msg: "Enjoy your Token =D!"
-            }
+            };
         }, err => {
             throw new Error('Failed to authorization!');
         });
@@ -99,7 +104,7 @@ class LoginReducers {
                     logged: data
                 }, 'process.env.SECRET_basic'),
                 token_type: "basic",
-            }
+            };
         }, err => {
             throw new Error('Failed to authorization!');
         });
