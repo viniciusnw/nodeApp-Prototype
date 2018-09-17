@@ -15,6 +15,7 @@ process.env.SECRET = JSON.stringify({
 process.env.ROUTES = JSON.stringify({
     apiMainRoute: '/api',
     version: '/v0',
+    // auth routes
     oauthRoutes: {
         path: '/oauth',
         childs: {
@@ -29,6 +30,18 @@ process.env.ROUTES = JSON.stringify({
             },
             logout: {
                 path: '/logout'
+            }
+        }
+    },
+    // default routes
+    defaultRoutes: {
+        path: '/default',
+        childs: {
+            register: {
+                path: '/cadastrar'
+            },
+            recoverPass: {
+                path: '/recuperar-senha'
             }
         }
     }

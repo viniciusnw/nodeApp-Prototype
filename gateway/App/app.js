@@ -22,10 +22,10 @@ module.exports = App = {
          * all routes after then, use auth.beaderAuthentication for access
          * for application level security
          * 
-         * Default Routes
+         * Default Routes /default
          */
         Server.express.use(
-            apiMainRoute + '/default',
+            apiMainRoute +  ENV.ROUTES.defaultRoutes.path,
             auth.beaderAuthentication,
             AppRoutes.defaultRoutes.export()
         );

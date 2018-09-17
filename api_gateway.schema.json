@@ -1,0 +1,1584 @@
+{
+    "cmc_agenda": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "escala_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "profissional_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "item_agenda_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "paciente_uuid",
+                "Type": "varchar(36)",
+                "Null": true,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "horario",
+                "Type": "timestamp",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "reservado",
+                "Type": "enum('S','N')",
+                "Null": false,
+                "Key": "",
+                "Default": "N",
+                "Extra": ""
+            },
+            {
+                "Field": "ativo",
+                "Type": "enum('S','N')",
+                "Null": false,
+                "Key": "",
+                "Default": "S",
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "cmc_agendas_recursos": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "recurso_id",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "agenda_id",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "cmc_escalas": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "unidade_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "tipo_escala",
+                "Type": "enum('ORDEM DE CHEGADA','HORA MARCADA')",
+                "Null": false,
+                "Key": "",
+                "Default": "HORA MARCADA",
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "cmc_escalas_datas_exclusoes": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "escala_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "data",
+                "Type": "date",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "cmc_escalas_horarios": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "escala_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "horario",
+                "Type": "time",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "cmc_escalas_itens_agenda": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "escala_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "item_agenda_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "cmc_escalas_regras": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "escala_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "objeto",
+                "Type": "varchar(100)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "operador",
+                "Type": "varchar(100)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "acao",
+                "Type": "enum('TRIGGER','BLOQUEIO','PERMSSAO')",
+                "Null": false,
+                "Key": "",
+                "Default": "BLOQUEIO",
+                "Extra": ""
+            },
+            {
+                "Field": "valor",
+                "Type": "varchar(100)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "prioridade",
+                "Type": "int(11)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "cmc_insumos": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "tipo",
+                "Type": "enum('MATERIAL','MEDICAMENTO','TAXA')",
+                "Null": false,
+                "Key": "",
+                "Default": "MATERIAL",
+                "Extra": ""
+            },
+            {
+                "Field": "uso",
+                "Type": "enum('NORMAL','OPME','REPROCESSADO')",
+                "Null": false,
+                "Key": "",
+                "Default": "NORMAL",
+                "Extra": ""
+            },
+            {
+                "Field": "unidade",
+                "Type": "varchar(50)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "cmc_item_agenda": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "tuss",
+                "Type": "varchar(8)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "insumo_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "tipo",
+                "Type": "enum('CONSULTA','AMBULATORIO','IMAGEM','LABORATORIO','TRATAMENTO')",
+                "Null": false,
+                "Key": "",
+                "Default": "CONSULTA",
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "cmc_recursos": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "profissional_uuid",
+                "Type": "varchar(36)",
+                "Null": true,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "tipo",
+                "Type": "enum('SALA','EQUIPAMENTO','PROFISSIONAL','ANDAR','UNIDADE')",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "descricao",
+                "Type": "enum('NORMAL','OPME','REPROCESSADO')",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "ativo",
+                "Type": "enum('S','N')",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "quantidade",
+                "Type": "int(11)",
+                "Null": false,
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "cmc_recursos_escalas": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "escala_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "recurso_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gw_cbo": {
+        "fields": [
+            {
+                "Field": "codigo",
+                "Type": "varchar(15)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "descricao",
+                "Type": "varchar(255)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gw_conselhos": {
+        "fields": [
+            {
+                "Field": "codigo",
+                "Type": "varchar(15)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "sigla",
+                "Type": "varchar(5)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "Descrição",
+                "Type": "varchar(45)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gw_contatos_telefones": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "contato_uuid",
+                "Type": "varchar(45)",
+                "Null": true,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "tipo",
+                "Type": "enum('FIXO','CELULAR')",
+                "Null": false,
+                "Key": "",
+                "Default": "CELULAR",
+                "Extra": ""
+            },
+            {
+                "Field": "numero",
+                "Type": "varchar(16)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gw_convenios": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "vinculo",
+                "Type": "varchar(36)",
+                "Null": true,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "tipo",
+                "Type": "enum('C','P','S')",
+                "Null": false,
+                "Key": "",
+                "Default": "C",
+                "Extra": ""
+            },
+            {
+                "Field": "sub_tipo",
+                "Type": "enum('N','P','R')",
+                "Null": false,
+                "Key": "",
+                "Default": "N",
+                "Extra": ""
+            },
+            {
+                "Field": "modelo_credenciais",
+                "Type": "varchar(100)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "codigo_ans",
+                "Type": "varchar(45)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gw_empresa_contatos": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "empresa_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "nome",
+                "Type": "varchar(100)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "email",
+                "Type": "varchar(255)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "setor",
+                "Type": "varchar(100)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "observacoes",
+                "Type": "text",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gw_empresa_dados": {
+        "fields": [
+            {
+                "Field": "empresa_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "cnpj",
+                "Type": "varchar(18)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "pais",
+                "Type": "varchar(100)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "estado",
+                "Type": "varchar(100)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "cidade",
+                "Type": "varchar(100)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "endereco",
+                "Type": "varchar(255)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "email",
+                "Type": "varchar(255)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "telefone",
+                "Type": "varchar(16)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gw_empresas": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": "UUID",
+                "Extra": ""
+            },
+            {
+                "Field": "nome",
+                "Type": "varchar(100)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "descricao",
+                "Type": "text",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "data_cadastro",
+                "Type": "datetime",
+                "Null": false,
+                "Key": "",
+                "Default": "CURRENT_TIMESTAMP",
+                "Extra": ""
+            },
+            {
+                "Field": "situacao",
+                "Type": "enum('ATIVO','INATIVO')",
+                "Null": false,
+                "Key": "",
+                "Default": "ATIVO",
+                "Extra": ""
+            },
+            {
+                "Field": "matriz",
+                "Type": "varchar(36)",
+                "Null": true,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gw_endpoints": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "url",
+                "Type": "varchar(256)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "descrição",
+                "Type": "text",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gw_modulos": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "nome",
+                "Type": "varchar(100)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "descricao",
+                "Type": "text",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gw_modulos_endpoints": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "modulo_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "endpoint_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gw_profissional_cbo": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "codigo_cbo",
+                "Type": "varchar(15)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "profissional_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gw_setores_tipos": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "descricao",
+                "Type": "varchar(100)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gw_sigtap": {
+        "fields": [
+            {
+                "Field": "codigo_tuss",
+                "Type": "varchar(8)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "codigo_sus",
+                "Type": "varchar(15)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "descricao",
+                "Type": "varchar(100)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gw_tuss": {
+        "fields": [
+            {
+                "Field": "codigo_tuss",
+                "Type": "varchar(8)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "codigo_amb",
+                "Type": "varchar(15)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "descricao",
+                "Type": "varchar(100)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gw_usuario": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "nome",
+                "Type": "varchar(100)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "cpf",
+                "Type": "varchar(14)",
+                "Null": false,
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "data_nascimento",
+                "Type": "varchar(10)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "email",
+                "Type": "varchar(255)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "celular",
+                "Type": "varchar(16)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "verificado",
+                "Type": "enum('S','N')",
+                "Null": false,
+                "Key": "",
+                "Default": "N",
+                "Extra": ""
+            },
+            {
+                "Field": "ativo",
+                "Type": "enum('S','N')",
+                "Null": false,
+                "Key": "",
+                "Default": "S",
+                "Extra": ""
+            },
+            {
+                "Field": "ultimo_acesso",
+                "Type": "timestamp",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gws_convenios": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "unidade_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "convenio_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "ws_id",
+                "Type": "varchar(45)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "nome",
+                "Type": "varchar(45)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "credenciais",
+                "Type": "varchar(100)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gws_empresas_modulos": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "empresa_uuid",
+                "Type": "varchar(36)",
+                "Null": true,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "modulo_uuid",
+                "Type": "varchar(36)",
+                "Null": true,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gws_pacientes": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "unidade_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "usuario_uuid",
+                "Type": "varchar(36)",
+                "Null": true,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "nome",
+                "Type": "varchar(100)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "data_nascimento",
+                "Type": "date",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "sexo",
+                "Type": "enum('M','F')",
+                "Null": false,
+                "Key": "",
+                "Default": "M",
+                "Extra": ""
+            },
+            {
+                "Field": "cpf",
+                "Type": "varchar(45)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "celular",
+                "Type": "varchar(16)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "email",
+                "Type": "varchar(255)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "rg",
+                "Type": "varchar(15)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "orgao_emissor",
+                "Type": "varchar(15)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "nome_mae",
+                "Type": "varchar(100)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "pais",
+                "Type": "varchar(100)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "estado",
+                "Type": "varchar(100)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "cidade",
+                "Type": "varchar(100)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "endereco",
+                "Type": "varchar(255)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "ws_paciente_id",
+                "Type": "varchar(15)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gws_profissionais": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "unidade_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "tipo_profissional_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "codigo_conselho",
+                "Type": "varchar(15)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "usuario_uuid",
+                "Type": "varchar(36)",
+                "Null": true,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "nome",
+                "Type": "varchar(100)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "data_nascimento",
+                "Type": "date",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "sexo",
+                "Type": "enum('M','F')",
+                "Null": false,
+                "Key": "",
+                "Default": "M",
+                "Extra": ""
+            },
+            {
+                "Field": "cpf",
+                "Type": "varchar(14)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "rg",
+                "Type": "varchar(15)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "orgao_emissor",
+                "Type": "varchar(15)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "pais",
+                "Type": "varchar(100)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "estado",
+                "Type": "varchar(100)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "cidade",
+                "Type": "varchar(100)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "endereco",
+                "Type": "varchar(255)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "numero_conselho",
+                "Type": "varchar(15)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "corpo_clinico",
+                "Type": "enum('S','N')",
+                "Null": false,
+                "Key": "",
+                "Default": "S",
+                "Extra": ""
+            },
+            {
+                "Field": "ws_profissional_id",
+                "Type": "varchar(15)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gws_setores": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "setor_tipo_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "unidade_uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "nome",
+                "Type": "varchar(45)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "tipo",
+                "Type": "int(11)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "ativo",
+                "Type": "enum('S','N')",
+                "Null": false,
+                "Key": "",
+                "Default": "S",
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gws_tipo_profissional": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "unidade_uuid",
+                "Type": "varchar(36)",
+                "Null": true,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "descricao",
+                "Type": "varchar(100)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "sigla",
+                "Type": "varchar(5)",
+                "Null": false,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    },
+    "gws_unidades": {
+        "fields": [
+            {
+                "Field": "uuid",
+                "Type": "varchar(36)",
+                "Null": false,
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "empresa_uuid",
+                "Type": "varchar(36)",
+                "Null": true,
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "nome",
+                "Type": "varchar(45)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "sigla",
+                "Type": "varchar(45)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "endereco",
+                "Type": "varchar(45)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "telefone",
+                "Type": "varchar(45)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "erp",
+                "Type": "varchar(45)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "api_client",
+                "Type": "varchar(45)",
+                "Null": true,
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "relationsFromTable": [],
+        "relationsToTable": []
+    }
+}

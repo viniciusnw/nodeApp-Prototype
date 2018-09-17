@@ -1,32 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>CM Call</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CM Call</title>
+</head>
 
-    <body>
-        <form action="" id="loggin-form">
-            <input type="text" name="user" id="user" value="Rob">
-            <input type="password" name="pwd" id="pwd" value="teste">
+<body>
+    <!-- LOGIN FORM -->
+    <form id="loggin-form">
+        <input type="text" name="loggin-form-user" id="loggin-form-user" placeholder="User" value="Rob">
+        <input type="password" name="loggin-form-pwd" id="loggin-form-pwd" placeholder="Password" value="teste">
 
-            <button type="submit" name="Login" id="loggin-submit">
-                Login
-            </button>
-        </form>
+        <button type="submit" name="Login" id="loggin-submit">
+            Login
+        </button>
 
-        <button type="submit" name="Logout" id="logout-submit">Logout</button>
-    </body>
+        <button type="submit" name="RecoverPass" id="recover-pass-form-call">
+            Recuperar Senha
+        </button>
+    </form>
+    <br>
+    <form id="recover-pass-form" style="display: none" data-hidden="true">
+        <input type="text" name="recover-pass-form-userEmail" id="recover-pass-form-userEmail" placeholder="User or Email"
+            value="san.doe@email.com">
 
-    <!--  -->
-    <script src="./scripts/jquery.js"></script>
-    <!--  -->
-    <script src="./scripts/cookie.js"></script>
-    <script src="./scripts//md5.js"></script>
-    <script src="./scripts/api-ajax.js"></script>
-    <!--  -->
-    <script src="./scripts/index.js"></script>
+        <button type="submit" name="RecoverPass" id="recover-pass-submit">
+            Enviar
+        </button>
+    </form>
+    <!-- LOGOUT FORM -->
+    <button name="Logout" id="logout-submit">Logout</button>
+    <br>
+
+    <!-- REGISTER FORM  -->
+    <button name="Cadastrar" id="register-form-call">Cadastrar</button>
+    <br><br>
+    <form id="register-form" style="display: none" data-hidden="true">
+        <!-- INFOS -->
+        <input type="text" name="register-form-nome" id="register-form-nome" value="San" placeholder="Nome"> <br>
+        <input type="text" name="register-form-sobrenome" id="register-form-sobrenome" value="Doe" placeholder="Sobrenome">
+        <br>
+        <input type="text" name="register-form-email" id="register-form-email" value="san.doe@email.com" placeholder="Email">
+        <br>
+        <input type="text" name="register-form-cpf" id="register-form-cpf" value="000.000.000-01" placeholder="CPF">
+        <br>
+        <!-- PASSWORD -->
+        <input type="password" name="register-form-senha" id="register-form-senha" value="password" placeholder="Senha">
+        <input type="password" name="register-form-confSenha" id="register-form-confSenha" value="password" placeholder="Conf. Senha">
+        <br>
+        <br>
+        <button type="submit" name="Login" id="register-submit">
+            Enviar
+        </button>
+    </form>
+</body>
+
+<!--  -->
+<script src="./scripts/jquery.js"></script>
+<!--  -->
+<script src="./scripts/cookie.js"></script>
+<script src="./scripts//md5.js"></script>
+<script src="./scripts/api-ajax.js"></script>
+<!--  -->
+<script src="./scripts/index.js"></script>
+
 </html>

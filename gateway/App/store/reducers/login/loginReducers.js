@@ -98,7 +98,7 @@ class LoginReducers {
     //     }
     // }
     authorizationBasic(payload) {
-        return Store.Models.user.login(payload.user, payload.pwd).then(data => {
+        return Store.Models.user.login(payload).then(data => {
             return {
                 access_token: "Basic " + this.jwt.sign({
                     logged: data

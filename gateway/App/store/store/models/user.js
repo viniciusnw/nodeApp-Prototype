@@ -1,46 +1,39 @@
 const models = require('./../models');
 
-// User Model return
-// {
-//     "$schema": "http://json-schema.org/draft-04/schema#",
-//     "title": "User",
-//     "type": "object",
-//     "properties": {
-//         "client_id": {
-//             "type": "string"
-//         },
-//         "name": {
-//             "type": "string"
-//         },
-//         "user": {
-//             "type": "string"
-//         },
-//         "pwd": {
-//             "type": "string"
-//         }
-//     }
-// }
 const userMock = [{
-    client_id: 'd41d8cd98f00b204e9800998ecf8427e', // <- client_id reference {1}
-    name: 'Rob Doe', // user name
+    uuid: 1,
+    nome: 'Rob Doe', // user name
+    cpf: '',
+    data_nascimento: '',
+    email: '',
+    celular: '',
+    verificado: '',
+    ativo: '',
+    ultimo_acesso: '',
+    // user&&pwd
     user: 'Rob', // user
-    pwd: '698dc19d489c4e4db73e28a713eab07b' // <- teste
+    pwd: '698dc19d489c4e4db73e28a713eab07b' // <-- teste
 }];
 
 module.exports = user = {
 
-    // READ
+    // READ GETS
     get: () => new Promise((resolve, reject) => {
         resolve([useMock]);
     }),
-    login: (user, pwd) => new Promise((resolve, reject) => {
-        let logged = userMock.find(u => u.user == user && u.pwd == pwd);
-        if (!logged) reject();
-        resolve(logged);
+    login: payloadObj => new Promise((resolve, reject) => {
+        let logged = userMock.find(u => u.user == payloadObj.user && u.pwd == payloadObj.pwd);
+        if (!logged) reject(); // wrong user or pass
+        resolve(logged); // correct :D
+    }),
+    recoverPass: payloadObj => new Promise((resolve, reject) => {
+        resolve(payloadObj);
     }),
 
-    // CREATE
-    post: () => {},
+    // CREATE USER
+    post: payloadObj => new Promise((resolve, reject) => {
+        resolve(payloadObj);
+    }),
 
     // UPDATE
     put: () => {},

@@ -19,7 +19,8 @@
         "cm:app": "node ./cmAppName/index"
     },
     "devDependencies": {
-        "cross-env": "5.2.0",
+        "cross-env": "^5.2.0",
+        "mysql-json-schema": "^1.2.0",
         "newman": "4.1.0",
         "nodemon": "1.18.4"
     },
