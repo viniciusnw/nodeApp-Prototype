@@ -9,7 +9,8 @@ const NODE_ENV = {
 
 // == ENV DEFAULT VARIABLES == //
 const {
-    ROUTES
+    ROUTES,
+    SECRET
 } = require('./env.default.variables');
 
 // == ENV VARIABLES == //
@@ -19,5 +20,6 @@ const {
 
 module.exports = ENV = {
     ROUTES,
+    SECRET,
     DATABASE
 };

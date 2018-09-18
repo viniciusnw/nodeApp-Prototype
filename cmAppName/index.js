@@ -1,12 +1,13 @@
 (function () {
     const express = require('express');
     const jwt = require('jsonwebtoken');
+    const SECRET_APPLICATION = 'eyJhbGciOiJIUzUxMiJ9.eyJob3N0Ijoid3d3LmNtdGVjbm9sb2dpYS5jb20uYnIiLCJ0eXBlIjoiSldUIiwidXNlIjoia2V5IGZvciBzaWduYXR1cmUgYXBwbGljYXRpb24gdG9rZW4ifQ.FCmZZzD6bg6OEA6OL6XzqQg95cZ4kLMyxUCuHA3oeQbLOhYoPcU96jI_aET8zJ7643TeWfTykB6ytjWeYKYX3A';
 
     const client = {
         id: 'd41d8cd98f00b204e9800998ecf8427e', // public key
         secret: '21232f297a57a5a743894a0e4a801fc3', // private key
         // -- //
-        signature: 'process.env.SECRET_application' // public application signature key
+        signature: SECRET_APPLICATION // public application signature key
     };
     const app = express();
 

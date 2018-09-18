@@ -7,7 +7,7 @@ module.exports = Auth = {
     basicAuthentication: (req, res, next) => {
         Auth.getHeaders(req, 'authorization-user').then(Basic => {
 
-            jwt.verify(Basic, 'process.env.SECRET_basic', (err, decoded) => {
+            jwt.verify(Basic, ENV.SECRET.BASIC, (err, decoded) => {
                 if (err) res.status(401).json(responsePayload.errorResponse({
                     message: 'basic:token:expired'
                 }));
@@ -24,7 +24,7 @@ module.exports = Auth = {
     // check bearer 
     beaderAuthentication: (req, res, next) => {
         Auth.getHeaders(req, 'authorization').then(Beader => {
-            jwt.verify(Beader, 'process.env.SECRET_bearer', (err, decoded) => {
+            jwt.verify(Beader, ENV.SECRET.BEARER, (err, decoded) => {
                 if (err) res.status(401).json(responsePayload.errorResponse({
                     message: 'bearer:token:expired'
                 }));

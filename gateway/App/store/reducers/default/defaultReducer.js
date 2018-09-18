@@ -2,18 +2,14 @@ const Store = require('./../../store/store');
 
 class DefaultReducers {
     constructor() {
-        this.jwt = require('jsonwebtoken');
-    }
-
-    jwtVerify(jwt, key) {
-        return this.jwt.verify(jwt, key);
+        // this.jwt = require('jsonwebtoken');
     }
 
     register(payload) {
         return Store.Models.user.post(payload).then(data => {
             return data;
         }, err => {
-            throw new Error('Failed to register User!');
+            throw new Error('failed to register User!');
         });
     }
 
@@ -21,27 +17,16 @@ class DefaultReducers {
         return Store.Models.user.recoverPass(payload).then(data => {
             return data;
         }, err => {
-            throw new Error('Failed to recover Pass!');
+            throw new Error('failed to recover Pass!');
         });
     }
 
+    // teste
     getProfessionalPerUsr_uuid(payload) {
-        let usuario_uuid;
-
-        // payload.usuario_uuid, 'process.env.SECRET_basic'
-
-        // this.jwt.verify(payload.usuario_uuid, 'process.env.SECRET_basic', (err, decoded) => {
-        //     if (err) {
-        //         usuario_uuid = payload.usuario_uuid;
-        //         return;
-        //     }
-        //     usuario_uuid = decoded.logged.uuid;
-        // });
-        
-        return Store.Models.profissional.getPer_usuario_uuid(usuario_uuid).then(p => {
+        return Store.Models.profissional.getPer_usuario_uuid(payload.usuario_uuid).then(p => {
             return p;
         }, err => {
-            throw new Error('No content user!');
+            throw new Error('no content user!');
         });
     }
 

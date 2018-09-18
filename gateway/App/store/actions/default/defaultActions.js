@@ -24,12 +24,13 @@ module.exports = defaultA = {
         return Joi.validate(schemaToValidate, schema);
     },
 
+    // testew
     // PROFESSIONAL-ACTIONS
-    GET_PROFESSIONAL_PER_usuario_uuid: 'GET_PROFESSIONAL_PER_usuario_uuid',
-    GET_PROFESSIONAL_PER_usuario_uuid_schema: schemaToValidate => {
+    GET_PROFISSIONAL_PER_usuario_uuid: 'GET_PROFISSIONAL_PER_usuario_uuid',
+    GET_PROFISSIONAL_PER_usuario_uuid_schema: schemaToValidate => {
         let schema = Joi.object().keys({
             usuario_uuid: Joi.required(),
         });
         return Joi.validate(schemaToValidate, schema);
-    },
+    }, 
 }

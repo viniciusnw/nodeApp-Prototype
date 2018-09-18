@@ -36,8 +36,9 @@ module.exports = defaultD = function (dispatchObj) {
                     }
                 );
                 break;
-            case defaultActions.GET_PROFESSIONAL_PER_usuario_uuid:
-                defaultActions.GET_PROFESSIONAL_PER_usuario_uuid_schema(dispatchObj.payload).then(
+            // teste
+            case defaultActions.GET_PROFISSIONAL_PER_usuario_uuid:
+                defaultActions.GET_PROFISSIONAL_PER_usuario_uuid_schema(dispatchObj.payload).then(
                     (schemaPayload) => defaultReducer.exec('getProfessionalPerUsr_uuid', schemaPayload).then(
                         ServiceDataReturn => resolve(responsePayload.successResponse(ServiceDataReturn)),
                         ServiceDataReturnErr => reject(responsePayload.errorResponse(ServiceDataReturnErr, 406))

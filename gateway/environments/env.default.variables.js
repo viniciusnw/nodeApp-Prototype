@@ -10,6 +10,7 @@ process.env.SECRET = JSON.stringify({
     // jwt master key {used for encode: BEARER, BASIC, APPLICATION} signature
     KEY: 'CMTEC'
 });
+module.exports.SECRET = JSON.parse(process.env.SECRET);
 
 // ====== ROUTES ====== //
 process.env.ROUTES = JSON.stringify({
@@ -39,14 +40,21 @@ process.env.ROUTES = JSON.stringify({
         path: '/default',
         childs: {
             register: {
-                path: '/cadastrar'
+                path: '/register'
             },
             recoverPass: {
-                path: '/recuperar-senha'
+                path: '/recover-pass'
             },
-            profissional: {
-                path: '/profissional',
-                queryParam: ['usuario_uuid']
+
+            // get Profissional per usuario_uuid || get info in basic jwt
+            professional: {
+                path: '/professional',
+                childs: {
+                    perUsrId: {
+                        path: '/professional/per-usr-id',
+                        queryParam: ['usuario_uuid'],
+                    }
+                }
             }
         }
     }

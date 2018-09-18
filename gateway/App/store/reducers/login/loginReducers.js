@@ -10,19 +10,9 @@ class LoginReducers {
     }
 
     // oAuth/Authorize
-    // {
-    //     "$schema": "http://json-schema.org/draft-04/schema#",
-    //     "title": "oAuth/Authorize",
-    //     "type": "object",
-    //     "properties":{
-    //         "authorization_code": {
-    //             "type": "string"
-    //         }
-    //     }
-    // }
     authentication(payload) {
         // decrypt encoding application
-        let client_id = this.jwtVerify(payload.client_id, 'process.env.SECRET_application').client_id;
+        let client_id = this.jwtVerify(payload.client_id, ENV.SECRET.APPLICATION).client_id;
 
         return Store.Models.client.get(client_id).then(data => {
             return {
@@ -33,44 +23,22 @@ class LoginReducers {
                 })
             };
         }, err => {
-            throw new Error('Failed to authentication!');
+            throw new Error('failed to authentication!');
         });
     }
 
     // oAuth/Token
-    // {
-    //     "$schema": "http://json-schema.org/draft-04/schema#",
-    //     "title": " oAuth/Token",
-    //     "type": "object",
-    //     "properties":{
-    //         "access_token": {
-    //             "type": "string"
-    //         },
-    //         "token_type": {
-    //             "type": "string"
-    //         },
-    //         "expires_in": {
-    //             "type": "string"
-    //         },
-    //         "host":{
-    //             "type": "string"
-    //         },
-    //         "msg":{
-    //             "type": "string"
-    //         }
-    //     }
-    // }
     authorizationBearer(payload) {
         // decrypt encoding application
-        let client_id = this.jwtVerify(payload.client_id, 'process.env.SECRET_application').client_id;
-        let client_secret = this.jwtVerify(payload.client_secret, 'process.env.SECRET_application').client_secret;
+        let client_id = this.jwtVerify(payload.client_id, ENV.SECRET.APPLICATION).client_id;
+        let client_secret = this.jwtVerify(payload.client_secret, ENV.SECRET.APPLICATION).client_secret;
 
         return Store.Models.client.get(client_id).then(data => {
             if (client_id != this.jwtVerify(payload.authorization_code, client_secret).client_id)
                 throw new Error('Failed to authorization!');
 
             return {
-                access_token: 'Bearer ' + this.jwt.sign(data, 'process.env.SECRET_bearer', {
+                access_token: 'Bearer ' + this.jwt.sign(data, ENV.SECRET.BEARER, {
                     expiresIn: 86400 // expire in 24h
                 }),
                 token_type: "bearer",
@@ -79,34 +47,21 @@ class LoginReducers {
                 msg: "Enjoy your Token =D!"
             };
         }, err => {
-            throw new Error('Failed to authorization!');
+            throw new Error('failed to authorization!');
         });
     }
 
     // oAuth/Login
-    // {
-    //     "$schema": "http://json-schema.org/draft-04/schema#",
-    //     "title": "oAuth/Login",
-    //     "type": "object",
-    //     "properties":{
-    //         "access_token": {
-    //             "type": "string"
-    //         },
-    //         "token_type": {
-    //             "type": "string"
-    //         }
-    //     }
-    // }
     authorizationBasic(payload) {
         return Store.Models.user.login(payload).then(data => {
             return {
                 access_token: "Basic " + this.jwt.sign({
                     logged: data
-                }, 'process.env.SECRET_basic'),
+                }, ENV.SECRET.BASIC),
                 token_type: "basic",
             };
         }, err => {
-            throw new Error('Failed to authorization!');
+            throw new Error('failed to authorization!');
         });
     }
 

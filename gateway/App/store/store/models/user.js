@@ -36,14 +36,14 @@ module.exports = user = {
     }),
     login: payloadObj => new Promise((resolve, reject) => {
         let logged = userMock.find(u => u.user == payloadObj.user && u.pwd == payloadObj.pwd);
-        if (!logged) reject(); // wrong user or pass
+        if (!logged) reject(); // wrong user or pass :/
         resolve(logged); // correct :D
     }),
     recoverPass: payloadObj => new Promise((resolve, reject) => {
         resolve(payloadObj);
     }),
 
-    // CREATE USER
+    // CREATE
     post: payloadObj => new Promise((resolve, reject) => {
         resolve(payloadObj);
     }),

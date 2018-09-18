@@ -44,6 +44,7 @@ const models = require('./models');
 const client = require('./models/client');
 const user = require('./models/user');
 const profissional = require('./models/profissional');
+const unidades = require('./models/unidades');
 
 //Sore module
 module.exports.Models = {
@@ -51,5 +52,6 @@ module.exports.Models = {
     // import models
     client,
     user,
-    profissional
+    profissional,
+    unidades
 };

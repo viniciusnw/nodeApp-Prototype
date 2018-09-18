@@ -5,7 +5,7 @@ const profissionalMock = [{
     usuario_uuid: 1,
     unidade_uuid: 1,
     tipo_profissional_uuid: 1,
-    codigo_conselho: 1,
+    codigo_conselho: null,
     nome: 'Rob Doe',
     data_nascimento: '07/03/1994',
     sexo: 'M',
@@ -16,8 +16,8 @@ const profissionalMock = [{
     estado: 'MG',
     cidade: 'BH',
     endereco: 'Rua dos Timbiras 2500 apt 1721',
-    numero_conselho: 1,
-    corpo_clinico: 1,
+    numero_conselho: null,
+    corpo_clinico: null,
     ws_profissional_id: 1
 }];
 
@@ -33,7 +33,7 @@ module.exports = profissional = {
         resolve(prfl); // correct :D
     }),
 
-    // CREATE USER
+    // CREATE
     post: payloadObj => new Promise((resolve, reject) => {
         resolve(payloadObj);
     }),

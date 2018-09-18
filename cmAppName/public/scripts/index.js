@@ -65,7 +65,7 @@ function login(user, pwd) {
  * @param {*} registerObj
  */
 function register(registerObj) {
-    return api_ajax("http://localhost:3000/api/v0/default/cadastrar", "POST", registerObj).done(data => {
+    return api_ajax("http://localhost:3000/api/v0/default/register", "POST", registerObj).done(data => {
         console.log(data);
     });
 }
@@ -74,7 +74,7 @@ function register(registerObj) {
  * @param {*} userOrEmail
  */
 function recoverPass(userOrEmail) {
-    return api_ajax("http://localhost:3000/api/v0/default/recuperar-senha", "POST", {
+    return api_ajax("http://localhost:3000/api/v0/default/recover-pass", "POST", {
         userOrEmail: userOrEmail
     }).done(data => {
         console.log(data);
