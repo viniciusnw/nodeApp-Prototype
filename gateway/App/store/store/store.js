@@ -43,11 +43,13 @@ const models = require('./models');
 // Models
 const client = require('./models/client');
 const user = require('./models/user');
+const profissional = require('./models/profissional');
 
 //Sore module
 module.exports.Models = {
     models, // default model
     // import models
     client,
-    user
+    user,
+    profissional
 };

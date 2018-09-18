@@ -25,6 +25,7 @@ module.exports = defaultRoutes = {
                 res.status(err.status).json(err);
             });
         });
+
         // recover-pass
         router.post(defaultRoutes.Routes.recoverPass.path, function (req, res, next) {
             let payloadBody = req.body;
@@ -37,7 +38,19 @@ module.exports = defaultRoutes = {
                 res.status(err.status).json(err);
             });
         });
-        
+
+        router.get(defaultRoutes.Routes.profissional.path, function (req, res, next) {
+            let payloadQuery = req.query;
+            defaultDispatch({
+                type: defaultActions.GET_PROFESSIONAL_PER_usuario_uuid,
+                payload: payloadQuery
+            }).then((data) => {
+                res.status(data.status).json(data);
+            }, (err) => {
+                res.status(err.status).json(err);
+            });
+        });
+
         return router;
     }
 };

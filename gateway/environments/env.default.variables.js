@@ -20,7 +20,8 @@ process.env.ROUTES = JSON.stringify({
         path: '/oauth',
         childs: {
             authorize: {
-                path: '/authorize'
+                path: '/authorize',
+                queryParam: ['client_id']
             },
             token: {
                 path: '/token'
@@ -42,6 +43,10 @@ process.env.ROUTES = JSON.stringify({
             },
             recoverPass: {
                 path: '/recuperar-senha'
+            },
+            profissional: {
+                path: '/profissional',
+                queryParam: ['usuario_uuid']
             }
         }
     }
