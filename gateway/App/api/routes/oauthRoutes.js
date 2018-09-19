@@ -59,7 +59,7 @@ module.exports = oauthRoutes = {
         });
 
         // simple logout
-        router.get(oauthRoutes.Routes.logout.path, function (req, res, next) {
+        router.get(oauthRoutes.Routes.logout.path, auth.beaderAuthentication, function (req, res, next) {
             // dispatch
             loginDispatch({
                 type: loginActions.SIGN_OUT,

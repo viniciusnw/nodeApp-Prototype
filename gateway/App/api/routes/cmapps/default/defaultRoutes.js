@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const auth = require('./../../../../../server/auth/auth');
 
 //Load Store Module
 const storeModule = require('./../../../../store/store-module');
@@ -41,28 +42,26 @@ module.exports = defaultRoutes = {
 
         // teste
         // usuario_uuid || jwt basic token in header
-        router.get(defaultRoutes.Routes.professional.childs.perUsrId.path, function (req, res, next) {
-            // declare Dispatch
-            function callDefaultDispatch(payload) {
-                defaultDispatch({
-                    type: defaultActions.GET_PROFISSIONAL_PER_usuario_uuid,
-                    payload: payload
-                }).then((data) => {
-                    res.status(data.status).json(data);
-                }, (err) => {
-                    res.status(err.status).json(err);
-                });
-            }
+        (function () {
+            let route = defaultRoutes.Routes.professional.childs.perUsrId.path;
+            router.get(route, auth.getBasicToken, function (req, res, next) {
+                let payloadQuery = req.query;
+                console.log(req);
+                return;
 
-            if ('usuario_uuid' in req.query) callDefaultDispatch(req.query);
-            else App.getBasicToken(req, 'uuid').then(DecodedBasic => {
-                callDefaultDispatch({
-                    usuario_uuid: DecodedBasic.logged.uuid
-                });
-            }, err => {
-                callDefaultDispatch(null);
+                // {
+                //     usuario_uuid: 1
+                // }
+                // defaultDispatch({
+                //     type: defaultActions.GET_PROFISSIONAL_PER_usuario_uuid,
+                //     payload: payload
+                // }).then((data) => {
+                //     res.status(data.status).json(data);
+                // }, (err) => {
+                //     res.status(err.status).json(err);
+                // });
             });
-        });
+        })();
 
         return router;
     }
